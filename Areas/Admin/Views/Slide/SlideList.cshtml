@@ -1,0 +1,48 @@
+﻿@using Entities.Slide;
+@using Kendo.Mvc.UI
+
+@{
+    ViewData["Title"] = "SlideList";
+    Layout = "~/Areas/Admin/Views/Shared/_adminThemplate.cshtml";
+}
+
+<style>
+    .k-grid {
+        font-size: 12px;
+    }
+</style>
+
+
+<div class="k-rtl  table-responsive">
+@(Html.Kendo().Grid<Slide>
+    ()
+    .Name("grid")
+    .Columns(columns =>
+    {
+        columns.Bound(c => c.Id).Title("شناسه").Sortable(true).Filterable(true);
+       columns.Bound(c => c.title).Title("شناسه").Filterable(true);
+       columns.Bound(c => c.imageUrl).Title("شناسه");
+
+    })
+    .ToolBar(toolbar =>
+        {
+            toolbar.ClientTemplateId("GridToolbarTemplate");
+        })
+    .EnableCustomBinding(true)
+    .AutoBind(true)
+    .Pageable()
+    .Sortable()
+    .Scrollable()
+    .Filterable()
+    .DataSource(dataSource => dataSource
+     .Ajax().PageSize(10)
+    .Read(read => read.Action("Slide_Read", "Slide",new { area = "admin" }).Type(HttpVerbs.Get))
+    )
+    )
+
+    </div>
+
+
+<script id="GridToolbarTemplate" type="text/x-kendo-template">
+   <h1> hi</h1>
+</script>

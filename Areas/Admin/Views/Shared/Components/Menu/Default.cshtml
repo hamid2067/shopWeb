@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Entities.Menu.Menu>
+@{
+    Layout = null;
+}
+
+  <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+              
+                @foreach(var item in Model)
+                {
+                    if(item.ParentId==0)
+                    {
+                         <li class=" nav-item">
+                             <a href="@item.PageAddress">
+                                 <i class="feather @item.NameIcon"></i>
+                                 <span class="menu-title" data-i18n="Dashboard">@item.NameMenu</span>
+                             </a>
+                              <ul class="menu-content">
+                                @foreach(var sub in Model.Where(p=>p.ParentId==item.Id) )
+                                {
+                                      <li><a href="dashboard-analytics.html">
+                                          <i class="feather icon-circle"></i>
+                                          <span class="menu-item" data-i18n="Analytics">
+                                              @sub.NameMenu</span></a>
+                                    </li>
+                                }
+                            </ul>
+
+                        </li>
+
+                    }
+                   
+
+                }
+
+ </ul>
