@@ -8,6 +8,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Collections;
+using System.IO;
+using static NuGet.Packaging.PackagingConstants;
 
 namespace shopWeb.Areas.Admin.Controllers
 {
@@ -15,7 +18,7 @@ namespace shopWeb.Areas.Admin.Controllers
     public class SlideController : Controller
     {
 
-
+        private const int MaxBufferSize = 0x10000;
         private readonly IUserRepository userRepository;
 
         private readonly UserManager<User> userManager;
@@ -49,33 +52,113 @@ namespace shopWeb.Areas.Admin.Controllers
             return View();
         }
 
+      
         public JsonResult Slide_Read([DataSourceRequest] DataSourceRequest request)
         {
-            List<Slide> res =  _repositorySlide.Table.AsNoTracking().ToList();
+             List<Slide> res =  _repositorySlide.Table.AsNoTracking().ToList();
+            //ArrayList lst = new ArrayList();
+            //lst.Add(new { Id = 1 });
+            //lst.Add(new { Id = 2 });
             return Json(res.ToDataSourceResult(request));
           
         }
 
-        // GET: SlideController/Details/5
-        public ActionResult Details(int id)
+      
+
+        // GET: SlideController/Create
+        public ActionResult CreateSlide(int ? id)
         {
+
             return View();
         }
 
-        // GET: SlideController/Create
-        public ActionResult Create()
+        private static string GetUniqueFileName(IFormFile formFile)
         {
-            return View();
+            var fileName = Path.GetFileNameWithoutExtension(formFile.FileName);
+            var extension = Path.GetExtension(formFile.FileName);
+            return $"{fileName}.{DateTime.Now.Ticks.ToString()}{extension}";
         }
+
+        private static string GetFilePath(string fileName, string uploadsRootFolder)
+        {
+            return Path.Combine(uploadsRootFolder, fileName);
+        }
+
+        public async Task<bool> SaveFileAsync(IFormFile formFile, string filePath, bool isOverwrite = true)
+        {
+            string fileName = formFile.FileName;
+            if (isOverwrite)
+            {
+                fileName = GetUniqueFileName(formFile);
+            }
+
+            string path = GetFilePath(fileName, filePath);
+            //if (!isOverwrite)
+            //{
+            //    if (File.Exists(path))
+            //        File.Delete(path);
+            //}
+
+            using (var fileStream = new FileStream(path, FileMode.Create, FileAccess.Write,
+                                        FileShare.None,
+                                        MaxBufferSize,
+                                        useAsync: true))
+            {
+                await formFile.CopyToAsync(fileStream);
+            }
+            return true;
+        }
+
+
 
         // POST: SlideController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<ActionResult> CreateSlide(Slide data)
         {
+
+            //var extension = Path.GetExtension(file.FileName);
+            //if (extension != null)
+            //{
+            //    var ext = extension.ToLower();
+            //    string[] arrext;
+            //    if (extensionFile == ExtensionFileEnum.Image)
+            //        arrext = new string[] { ".jpg", ".png", ".jpeg", ".gif", ".svg" };
+            //    else if (extensionFile == ExtensionFileEnum.Audio)
+            //        arrext = new string[] { ".ogg", ".mp3" };
+            //    else if (extensionFile == ExtensionFileEnum.Video)
+            //        arrext = new string[] { ".ogg", ".mp4" };
+            //    else if (extensionFile == ExtensionFileEnum.File)
+            //        arrext = new string[] { ".zip", ".rar", ".pdf", ".txt", ".docx", ".doc" };
+            //    else if (extensionFile == ExtensionFileEnum.Excel)
+            //        arrext = new string[] { ".xls", ".xlsx" };
+            //    else if (extensionFile == ExtensionFileEnum.Apk)
+            //        arrext = new string[] { ".apk" };
+            //    else
+            //        arrext = new string[] { ".zip", ".rar", ".pdf", ".xls", ".xlsx", ".txt", ".gif", ".jpg", ".png", ".jpeg", ".txt", ".svg", ".ogg", ".mp3", ".mp4", ".docx", ".doc" };
+
+            //    var pos = Array.IndexOf(arrext, ext);
+            //    if (pos <= -1)
+            //    {
+            //        return new ResultViewModel { Succeeded = false, Message = "The file type is incorrect" };
+            //    }
+            //}
+            //if (!(file.Length <= contentLength))
+            //{
+            //    return new ResultViewModel { Succeeded = false, Message = "The size of the submitted file is more than the allowed value" };
+            //}
+
+            await SaveFileAsync(data.UploadFiles, $"wwwroot\\files", true);
+            data.imageUrl = "ddddd";
+          //  if (ModelState.IsValid)
+          //  {
+                _repositorySlide.Add(data);
+         
+          //  }
+
             try
             {
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("SlideList");
             }
             catch
             {
@@ -83,46 +166,9 @@ namespace shopWeb.Areas.Admin.Controllers
             }
         }
 
-        // GET: SlideController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
+     
 
-        // POST: SlideController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+      
 
-        // GET: SlideController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: SlideController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }

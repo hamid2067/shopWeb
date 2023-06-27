@@ -1,6 +1,7 @@
 using Data;
 using Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using shopWeb.Models;
 using System.Configuration;
 
@@ -37,11 +38,13 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddMvc();
 
 builder.Services.AddKendo();
 
 var app = builder.Build();
 
+//app.UseKendo();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

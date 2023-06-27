@@ -1,0 +1,57 @@
+﻿@model Entities.Slide.Slide
+@{
+    ViewData["Title"] = "CreateSlide";
+    Layout = "~/Areas/Admin/Views/Shared/_adminThemplate.cshtml";
+}
+
+<div class="card card-flush">
+    <div class="card-body ">
+        <form class="form" method="post"
+              action="@Url.Action("CreateSlide")"
+              asp-antiforgery="true"
+              encType="multipart/form-data"
+              id="uxFormLarge">
+            <div class="row g-9 mb-7">
+                <div class="col-md-6 fv-row">
+                    <label class="fs-6 fw-bold mb-2" asp-for="subTitle"></label>
+                    <input asp-for="subTitle" class="form-control form-control-solid" />
+                    <span asp-validation-for="subTitle" class="text-danger"></span>
+                </div>
+
+                <div class="col-md-6 fv-row">
+                    <label class="fs-6 fw-bold mb-2" asp-for="title"></label>
+                    <input asp-for="title" class="form-control form-control-solid" />
+                    <span asp-validation-for="title" class="text-danger"></span>
+                </div>
+                <div class="col-md-6 fv-row">
+                    <label class="fs-6 fw-bold mb-2" asp-for="description"></label>
+                    <input asp-for="description" class="form-control form-control-solid" />
+                    <span asp-validation-for="description" class="text-danger"></span>
+                </div>
+                <div class="col-md-6 fv-row">
+                    <label class="fs-6 fw-bold mb-2" asp-for="url"></label>
+                    <input asp-for="url"  class="form-control form-control-solid" />
+                    <span asp-validation-for="url" class="text-danger"></span>
+                </div>
+
+        
+                <div class="col-md-6 fv-row mt-2 mb-2">
+                    <label class="fs-6 fw-bold mb-2" asp-for="imageUrl"></label>
+                    <input type="file" id="UploadFiles" name="UploadFiles" />
+               
+                </div>
+
+
+            </div>
+
+            <div class=" flex-center">
+
+                <button type="submit" class="btn btn-primary">
+                    <span class="indicator-label">Submit</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+

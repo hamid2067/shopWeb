@@ -26,6 +26,7 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="wwwroot\files\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -36,8 +37,7 @@
 
   <ItemGroup>
     <Reference Include="Kendo.Mvc">
-      <HintPath>F:\core-sherkat\ExternalPackage\Kendo\Kendo.Mvc.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\bbb\Dll\Kendo.Mvc.dll</HintPath>
     </Reference>
   </ItemGroup>
 

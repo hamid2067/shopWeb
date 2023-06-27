@@ -1,6 +1,7 @@
 ﻿@using Entities.Slide;
-@using Kendo.Mvc.UI
 
+@using Kendo.Mvc.UI
+@using Kendo.Mvc.Extensions
 @{
     ViewData["Title"] = "SlideList";
     Layout = "~/Areas/Admin/Views/Shared/_adminThemplate.cshtml";
@@ -14,15 +15,67 @@
 
 
 <div class="k-rtl  table-responsive">
-@(Html.Kendo().Grid<Slide>
+
+    @{
+        ViewBag.Title = ViewBag.Title;
+    }
+
+
+
+
+    <div class="card card-flush">
+        <div class="card-body table-responsive">
+            @(
+                Html.Kendo().Grid<Slide>()
+                .Name("grid")
+                .Columns(columns =>
+                {
+                    columns.Bound(a => a.Id).Title("شناسه").Filterable(false);
+                })
+                .ToolBar(toolbar =>
+                {
+                    toolbar.ClientTemplateId("GridToolbarTemplate");
+                })
+                .Pageable(pager => pager
+                .Input(true)
+                .Info(true)
+                .PreviousNext(true)
+                .Refresh(true)
+                )
+                .Filterable().Sortable()
+                .DataSource(dataSource => dataSource
+                .Ajax().Sort(a => a.Add("Id").Descending())
+                .PageSize(20)
+                .Model(model =>
+                {
+                    model.Id(p => p.Id);
+
+                })
+                .Read(read => read.Action("Slide_Read", "Slide", new { area = "admin" }).Type(HttpVerbs.Get))
+                )
+                )
+        </div>
+    </div>
+
+    <script id="GridToolbarTemplate" type="text/x-kendo-template">
+         <div class="refreshBtnContainer">
+            <a href="/Invoice/CreateInvoice" class="btn btn-success   w-content">
+                <span class="k-icon k-i-add color-white"></span>
+                ثبت جدید
+            </a>
+        </div>
+    </script>
+
+   
+
+@*@(Html.Kendo().Grid<Slide>
     ()
     .Name("grid")
     .Columns(columns =>
     {
         columns.Bound(c => c.Id).Title("شناسه").Sortable(true).Filterable(true);
-       columns.Bound(c => c.title).Title("شناسه").Filterable(true);
-       columns.Bound(c => c.imageUrl).Title("شناسه");
 
+            columns.Bound(c => c.title).Title("title").Sortable(true).Filterable(true);
     })
     .ToolBar(toolbar =>
         {
@@ -35,14 +88,16 @@
     .Scrollable()
     .Filterable()
     .DataSource(dataSource => dataSource
-     .Ajax().PageSize(10)
-    .Read(read => read.Action("Slide_Read", "Slide",new { area = "admin" }).Type(HttpVerbs.Get))
+        .Ajax().PageSize(10).Model(model =>
+        {
+            model.Id(p => p.Id);
+
+        })
+    .Read(read => read.Action("Slide_Read", "Slide",new { area = "admin" }).Type(HttpVerbs.Post))
     )
-    )
+    )*@
 
     </div>
 
 
-<script id="GridToolbarTemplate" type="text/x-kendo-template">
-   <h1> hi</h1>
-</script>
+     
