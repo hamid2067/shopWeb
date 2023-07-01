@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using shopWeb.Models;
 using System.Collections;
 using System.IO;
 using static NuGet.Packaging.PackagingConstants;
@@ -52,14 +53,25 @@ namespace shopWeb.Areas.Admin.Controllers
             return View();
         }
 
-      
+
+        public ActionResult GetGridData([DataSourceRequest] DataSourceRequest request)
+        {
+            // Retrieve data from your data source
+            List<op> lst = new List<op>();
+            lst.Add(new op { Id = 1 });
+            lst.Add(new op { Id = 2 });
+
+            // Return the data as JSON
+            return Json(lst);
+        }
+
         public JsonResult Slide_Read([DataSourceRequest] DataSourceRequest request)
         {
-             List<Slide> res =  _repositorySlide.Table.AsNoTracking().ToList();
-            //ArrayList lst = new ArrayList();
-            //lst.Add(new { Id = 1 });
-            //lst.Add(new { Id = 2 });
-            return Json(res.ToDataSourceResult(request));
+            // List<Slide> res =  _repositorySlide.Table.AsNoTracking().ToList();
+            List<op> lst = new List<op>();
+            lst.Add(new op { Id = 1 });
+            lst.Add(new op { Id = 2 });
+            return Json(lst.ToDataSourceResult(request));
           
         }
 
@@ -150,11 +162,10 @@ namespace shopWeb.Areas.Admin.Controllers
 
             await SaveFileAsync(data.UploadFiles, $"wwwroot\\files", true);
             data.imageUrl = "ddddd";
-          //  if (ModelState.IsValid)
-          //  {
-                _repositorySlide.Add(data);
+       
+            _repositorySlide.Add(data);
          
-          //  }
+        
 
             try
             {

@@ -4,7 +4,7 @@
 @using Kendo.Mvc.Extensions
 @{
     ViewData["Title"] = "SlideList";
-    Layout = "~/Areas/Admin/Views/Shared/_adminThemplate.cshtml";
+    Layout = "~/Areas/Admin/Views/Shared/_adminThemplate1.cshtml";
 }
 
 <style>
@@ -20,17 +20,18 @@
         ViewBag.Title = ViewBag.Title;
     }
 
+ 
 
 
 
-    <div class="card card-flush">
+   @* <div class="card card-flush">
         <div class="card-body table-responsive">
             @(
-                Html.Kendo().Grid<Slide>()
-                .Name("grid")
+                Html.Kendo().Grid<op>()
+                .Name("grid3")
                 .Columns(columns =>
                 {
-                    columns.Bound(a => a.Id).Title("شناسه").Filterable(false);
+                    columns.Bound("Id").Title("شناسه").Filterable(false);
                 })
                 .ToolBar(toolbar =>
                 {
@@ -42,6 +43,8 @@
                 .PreviousNext(true)
                 .Refresh(true)
                 )
+                .EnableCustomBinding(true)
+                .AutoBind(true)
                 .Filterable().Sortable()
                 .DataSource(dataSource => dataSource
                 .Ajax().Sort(a => a.Add("Id").Descending())
@@ -51,12 +54,12 @@
                     model.Id(p => p.Id);
 
                 })
-                .Read(read => read.Action("Slide_Read", "Slide", new { area = "admin" }).Type(HttpVerbs.Get))
+                .Read(read => read.Action("GetGridData", "Slide", new { area = "admin" }).Type(HttpVerbs.Get))
                 )
                 )
         </div>
     </div>
-
+*@
     <script id="GridToolbarTemplate" type="text/x-kendo-template">
          <div class="refreshBtnContainer">
             <a href="/Invoice/CreateInvoice" class="btn btn-success   w-content">
@@ -67,6 +70,88 @@
     </script>
 
    
+    <div id="grid2" ></div>
+
+    <script>
+
+        $(document).ready(function () {
+            $("#grid2").kendoGrid({
+                dataSource: {
+                    transport: {
+                        read: {
+                            url: "../Slide/GetGridData",
+                            dataType: "json"
+                        }
+                    },
+                    schema: {
+                        model: {
+                            id: "id",
+                            fields: {
+                                id: { type: "number" },
+                                //name: { type: "string" },
+                                //age: { type: "number" }
+                            }
+                        }
+                    },
+                    serverFiltering: true,
+                    serverSorting: true
+                },
+                columns: [
+                    { field: "id", title: "id", filterable: { multi: true }, sortable: true },
+                    //{ field: "age", title: "Age", format: "{0:n0}" },
+                    {
+                        title: "Actions",
+                        template: '<a href="/customers/edit/#=id#">Edit</a>'
+                    }
+                ], filterable: true
+            });
+        });
+
+        //$(document).ready(function () {
+        //    $("#grid2").kendoGrid({
+        //        dataSource: {
+        //            transport: {
+        //                read: {
+        //                    url: "../Slide/GetGridData",
+        //                    dataType: "json"
+        //                }
+        //            },
+        //            schema: {
+        //                model: {
+        //                    id: "id",
+        //                    fields: {
+        //                        id: { type: "number" },
+        //                        //name: { type: "string" },
+        //                        //age: { type: "number" }
+        //                    }
+        //                }
+        //            }
+        //        },
+        //        columns: [
+        //            { field: "id", title: "id" },
+        //        ]
+        //    });
+        //});
+    </script>
+
+   @* <script>
+        $(document).ready(function () {
+            $("#grid2").kendoGrid({
+                dataSource: {
+                    data: [
+                        { id: 1, name: "John", age: 30 },
+                        { id: 2, name: "Jane", age: 25 },
+                        { id: 3, name: "Bob", age: 40 }
+                    ]
+                },
+                columns: [
+                    { field: "id", title: "ID" },
+                    { field: "name", title: "Name" },
+                    { field: "age", title: "Age" }
+                ]
+            });
+        });
+    </script>*@
 
 @*@(Html.Kendo().Grid<Slide>
     ()
