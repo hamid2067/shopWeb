@@ -23,6 +23,10 @@ namespace Entities.Product
         [Display(Name = "خلاصه توضیحات محصول")]
         public string productSummery { get; set; }
 
+       
+        [Display(Name = "محصول ویژه")]
+        public string IsSpecial { get; set; }
+
         public virtual ICollection<imageProduct> Images { get; set; }
 
     }
