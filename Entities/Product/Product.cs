@@ -27,7 +27,13 @@ namespace Entities.Product
         [Display(Name = "محصول ویژه")]
         public string IsSpecial { get; set; }
 
+
+
         public virtual ICollection<imageProduct> Images { get; set; }
+
+        public virtual ICollection<ProductSize> sizes { get; set; }
+
+        public virtual ICollection<ProductColor> colors { get; set; }
 
     }
 }

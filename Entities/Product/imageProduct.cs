@@ -23,5 +23,11 @@ namespace Entities.Product
         [Required]
         [Display(Name ="آدرس تصویر")]
         public string urlProduct { get; set; }
+
+
+
+        [Required]
+        [Display(Name = "عکس مشخص")]
+        public bool IsFirst { get; set; }
     }
 }
