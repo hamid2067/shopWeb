@@ -1,0 +1,14 @@
+J:\shopDibagaran\Entities\bin\Debug\net6.0\Entities.deps.json
+J:\shopDibagaran\Entities\bin\Debug\net6.0\Entities.runtimeconfig.json
+J:\shopDibagaran\Entities\bin\Debug\net6.0\Entities.dll
+J:\shopDibagaran\Entities\bin\Debug\net6.0\Entities.pdb
+J:\shopDibagaran\Entities\obj\Debug\net6.0\Entities.csproj.AssemblyReference.cache
+J:\shopDibagaran\Entities\obj\Debug\net6.0\Entities.GeneratedMSBuildEditorConfig.editorconfig
+J:\shopDibagaran\Entities\obj\Debug\net6.0\Entities.AssemblyInfoInputs.cache
+J:\shopDibagaran\Entities\obj\Debug\net6.0\Entities.AssemblyInfo.cs
+J:\shopDibagaran\Entities\obj\Debug\net6.0\Entities.csproj.CoreCompileInputs.cache
+J:\shopDibagaran\Entities\obj\Debug\net6.0\Entities.dll
+J:\shopDibagaran\Entities\obj\Debug\net6.0\refint\Entities.dll
+J:\shopDibagaran\Entities\obj\Debug\net6.0\Entities.pdb
+J:\shopDibagaran\Entities\obj\Debug\net6.0\Entities.genruntimeconfig.cache
+J:\shopDibagaran\Entities\obj\Debug\net6.0\ref\Entities.dll

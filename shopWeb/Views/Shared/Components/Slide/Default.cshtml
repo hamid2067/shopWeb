@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Entities.Slide.Slide>
+@{
+    Layout = null;
+}
+
+
+<!-- Hero Slider Area Start -->
+<div class="hero-area hero-slider-one">
+
+    @foreach(var item in Model)
+    {
+        <div class="single-hero-slider-one bg-img" data-bg="./upload/@item.imageUrl">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="hero-text-one">
+                            <h6 class="text-color-primary mb-10">
+                              @item.subTitle
+                            </h6>
+                            <h1 class="hero-title">
+                             @item.title
+                            </h1>
+                            <p class="mt-30">
+                               @item.description
+                            </p>
+                            <div class="button-box mt-30">
+                                <a href="@item.url" class="hero-btn-one btn">الآن خرید کنید <i class="icon-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }
+
+   
+
+</div>
+<!-- Hero Slider Area End -->
