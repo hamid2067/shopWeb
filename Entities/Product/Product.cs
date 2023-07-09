@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,12 +29,24 @@ namespace Entities.Product
         public string IsSpecial { get; set; }
 
 
+        [Required]
+        [Display(Name = "دسته بندی محصول")]
+        public int categoryId { get; set; }
+
+
+        [ForeignKey(nameof(categoryId))]
+        public ProductCategory ProductCategory { get; set; }
+
+
+
 
         public virtual ICollection<imageProduct> Images { get; set; }
 
         public virtual ICollection<ProductSize> sizes { get; set; }
 
         public virtual ICollection<ProductColor> colors { get; set; }
+
+        
 
     }
 }

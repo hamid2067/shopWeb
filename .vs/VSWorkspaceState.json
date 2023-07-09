@@ -1,7 +1,12 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Entities",
+    "\\Entities\\Product",
+    "\\shopWeb",
+    "\\shopWeb\\Views",
+    "\\shopWeb\\Views\\Home"
   ],
-  "SelectedNode": "\\shopWeb.sln",
+  "SelectedNode": "\\shopWeb\\Views\\Home\\LoginAdmin.cshtml",
   "PreviewInSolutionExplorer": false
 }

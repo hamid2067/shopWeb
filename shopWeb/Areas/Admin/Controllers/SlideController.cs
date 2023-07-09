@@ -4,6 +4,7 @@ using Entities.Menu;
 using Entities.Slide;
 using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -16,6 +17,7 @@ using static NuGet.Packaging.PackagingConstants;
 namespace shopWeb.Areas.Admin.Controllers
 {
     [Area("admin")]
+    [Authorize(Roles="admin")]
     public class SlideController : Controller
     {
 

@@ -18,7 +18,13 @@ var test3 = builder.Configuration.GetSection("Settings").Get<Settings>();
 
 var connectionString = builder.Configuration.GetConnectionString("SqlServer");
 
-builder.Services.AddIdentity<User, Role>(identityOptions =>{}).AddRoles<Role>()
+builder.Services.AddIdentity<User, Role>(identityOptions =>{
+    identityOptions.Password.RequireDigit = false;
+    identityOptions.Password.RequireLowercase = false;
+    identityOptions.Password.RequireNonAlphanumeric = false;
+    identityOptions.Password.RequireUppercase = false;
+    identityOptions.Password.RequiredLength = 6;
+}).AddRoles<Role>()
            .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>

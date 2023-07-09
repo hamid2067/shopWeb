@@ -20,5 +20,7 @@ namespace Entities.Product
 
         [ForeignKey(nameof(ProductId))]
         public Product Product { get; set; }
+
+        public virtual ICollection<PIP> pipes { get; set; }
     }
 }
