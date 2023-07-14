@@ -9,6 +9,7 @@ using Common.Utility;
 using Entities;
 using Entities.Common;
 using Entities.Menu;
+using Entities.Product;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -35,57 +36,57 @@ namespace Data
             modelBuilder.RegisterAllEntities<IEntity>(entitiesAssembly);
             modelBuilder.AddRestrictDeleteBehaviorConvention();
 
-            modelBuilder.Entity<Menu>()
-          .HasData(
-           new Menu
-           {
-               Id = 1,
-               NameMenu = "داشبورد",
-               NameIcon = "icon-menu",
-               PageAddress="/admin/dashbord/index",
-               ParentId = 0,
-           }
-       );
+//            modelBuilder.Entity<Menu>()
+//          .HasData(
+//           new Menu
+//           {
+//               Id = 1,
+//               NameMenu = "داشبورد",
+//               NameIcon = "icon-menu",
+//               PageAddress="/admin/dashbord/index",
+//               ParentId = 0,
+//           }
+//       );
 
-            modelBuilder.Entity<Menu>()
-       .HasData(
-        new Menu
-        {
-            Id = 2,
-            NameMenu = "محصولات",
-            NameIcon = "icon-file-text",
-            PageAddress="/admin/product",
-            ParentId = 0,
-        }
-    );
+//            modelBuilder.Entity<Menu>()
+//       .HasData(
+//        new Menu
+//        {
+//            Id = 2,
+//            NameMenu = "محصولات",
+//            NameIcon = "icon-file-text",
+//            PageAddress="/admin/product",
+//            ParentId = 0,
+//        }
+//    );
 
 
 
-            modelBuilder.Entity<Menu>()
-   .HasData(
-    new Menu
-    {
-        Id = 3,
-        NameMenu = "افزودن محصولات",
-        NameIcon = "icon-folder",
-        PageAddress = "/admin/product",
-        ParentId = 2,
-    }
-);
+//            modelBuilder.Entity<Menu>()
+//   .HasData(
+//    new Menu
+//    {
+//        Id = 3,
+//        NameMenu = "افزودن محصولات",
+//        NameIcon = "icon-folder",
+//        PageAddress = "/admin/product",
+//        ParentId = 2,
+//    }
+//);
 
             // modelBuilder.Entity<User>().HasQueryFilter(p => p.FullName != null);
 
 
 
-            //            modelBuilder.Entity<Role>()
-            //             .HasData(
-            //                 new Role
-            //                 {
-            //                     Id = 1,
-            //                     Name = "Admin",
-            //                     Description = "..."
-            //                 }
-            //             );
+            //modelBuilder.Entity<Role>()
+            // .HasData(
+            //     new Role
+            //     {
+            //         Id = 1,
+            //         Name = "Admin",
+            //         Description = "..."
+            //     }
+            // );
 
             //            modelBuilder.Entity<Role>()
             //            .HasData(
@@ -100,18 +101,19 @@ namespace Data
 
 
 
-            //            User user = new User()
-            //            {
-            //                Id = 1,
-            //                FullName = "hamid motamedi",
-            //                UserName = "modir",
-            //                NatinalCode = "2093609293",
-            //                PhoneNumber = "09384075832",
-            //                Email = "admin2@admin2.com",
-            //                LockoutEnabled = false,
+            //User user = new User()
+            //{
+            //    Id = 1,
+            //    FullName = "Kimiya Akbari",
+            //    UserName = "modir",
+            //    NatinalCode = "2081073692",
+            //    PhoneNumber = "09112561052",
+            //    Email = "admin@gmail.com",
+            //    LockoutEnabled = false,
 
 
-            //            };
+
+            //};
 
             //            PasswordHasher<User> passwordHasher = new PasswordHasher<User>();
             //            passwordHasher.HashPassword(user, "12345");
@@ -159,7 +161,25 @@ namespace Data
             //        ParentId = 2,
             //    }
             //);
+            modelBuilder.Entity<Category>()
+                      .HasData(
+                       new Category
+                       {
+                           Id = 1,
+                           Name = "مبل",
+                           Description="abcd",
 
+                       }
+                   );
+            modelBuilder.Entity<ProductCategory>()
+                    .HasData(
+                     new ProductCategory
+                     {
+                         Id = 2,
+                         categoryName="abcd",
+
+                     }
+                 );
 
         }
 

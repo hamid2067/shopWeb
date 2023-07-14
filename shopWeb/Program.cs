@@ -1,5 +1,6 @@
 using Data;
 using Entities;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using shopWeb.Models;
@@ -35,6 +36,19 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+})
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Home/LoginAdmin";
+        options.AccessDeniedPath = "/Home/AccessDenied";
+        options.ReturnUrlParameter = "/returnUrl";
+    });
+
 
 
 
@@ -75,6 +89,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

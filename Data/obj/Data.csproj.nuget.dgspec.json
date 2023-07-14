@@ -45,6 +45,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "CKEditor": {
+              "target": "Package",
+              "version": "[3.6.4, )"
+            },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
@@ -146,6 +150,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "CKEditor": {
+              "target": "Package",
+              "version": "[3.6.4, )"
+            },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
               "version": "[6.0.0, )"
@@ -244,6 +252,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "CKEditor": {
+              "target": "Package",
+              "version": "[3.6.4, )"
+            },
             "Microsoft.AspNetCore.Identity": {
               "target": "Package",
               "version": "[2.2.0, )"

@@ -26,7 +26,7 @@ namespace Entities.Product
 
        
         [Display(Name = "محصول ویژه")]
-        public string IsSpecial { get; set; }
+        public bool IsSpecial { get; set; }
 
 
         [Required]
@@ -35,7 +35,7 @@ namespace Entities.Product
 
 
         [ForeignKey(nameof(categoryId))]
-        public ProductCategory ProductCategory { get; set; }
+        public ProductCategory productCategory { get; set; }
 
 
 

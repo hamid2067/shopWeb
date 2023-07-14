@@ -1,0 +1,77 @@
+﻿@model Entities.Product.Product
+@using Entities.Product;
+@using Kendo.Mvc.UI
+@using Kendo.Mvc.Extensions
+@{
+    ViewData["Title"] = "CreateProduct";
+    Layout = "~/Areas/Admin/Views/Shared/_adminThemplate.cshtml";
+}
+
+<h1>افزودن محصول</h1>
+
+
+
+
+
+<div class="card card-flush">
+    <div class="card-body ">
+        <form  class="form" method="post" 
+            action="@Url.Action("CreateGroup")"
+              asp-antiforgery="true"
+              encType="multipart/form-data"
+              id="uxFormLarge">
+
+
+            @*<div class="row g-9 mb-7">
+
+                <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="category" id="category">
+                    <label class="fs-6 fw-bold mb-2" asp-for="productCategory">دسته بندی</label>
+                    <option>
+
+                        @foreach (var category in ViewBag.createproduct)
+                        {
+                        <option value="@category.Id">@category.categoryName</option>
+                        }
+
+                    </option>
+                </select>
+            </div>*@
+            <p></p>
+
+            <div class="form-group">
+                <label class="fs-6 fw-bold mb-2" asp-for="productName">نام محصول</label>
+                <input asp-for="productName" class="form-control form-control-solid" />
+                <span asp-validation-for="productName" class="text-danger"></span>
+            </div>
+
+            <p></p>
+            <div class="form-group">
+                <label>productSummery</label>
+                <div class="input-group">
+                    <textarea class="form-control" aria-label="With textarea"></textarea>
+                </div>
+            <p></p>
+            <div>
+                <label for="IsSpecial">
+                    <h6>محصول ویژه؟</h6>
+                </label>
+                <input type="checkbox" name="IsSpecial" id="IsSpecial">
+            </div>
+
+            <p></p>
+
+
+
+            <div class=" flex-center">
+
+                <button type="submit" class="btn btn-primary">
+                    <span class="indicator-label">ثبت</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+

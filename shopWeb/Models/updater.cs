@@ -26,7 +26,7 @@ namespace shopWeb.Models
                 //create the roles and seed them to the database
                 var role = new Role() { Name = "Admin", NormalizedName = "Admin", Description = "..." };
                 var roleresult = await RoleManager.CreateAsync(role);
-                //  await RoleManager.CreateAsync(new Role("Admin"));
+               // await RoleManager.CreateAsync(new Role("Admin"));
             }
 
             var roleCheck2 = await RoleManager.RoleExistsAsync("Operator");

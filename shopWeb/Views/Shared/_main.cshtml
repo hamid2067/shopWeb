@@ -18,6 +18,7 @@
 </head>
 <body class="">
     <!--====================  header area ====================-->
+   
     <div class="header-area header-area--default">
         <!-- Header Bottom Wrap Start -->
         <header class="header-area header_absolute header_height-90 header-sticky">
@@ -42,7 +43,15 @@
                     <div class="col-lg-4 col-md-4 col-6">
                         <div class="header-right-side text-end">
                             <div class="header-right-items  d-none d-md-block">
-                                <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"> <i class="icon-user"></i> </a>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <a href="/user/profile" > <i class="icon-user"></i> </a>
+                                }
+                                else
+                                {
+                                    <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"> <i class="icon-user"></i> </a>
+                                }
+
                             </div>
                             <div class="header-right-items d-none d-md-block">
                                 <a href="wishlist.html" class="header-cart"> <i class="icon-heart"></i> <span class="item-counter">3</span> </a>

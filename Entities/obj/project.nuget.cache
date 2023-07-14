@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "SJcvSkVORcjYaMuB1KWUW6xvA6N16VYySv9F+u1lg2CK/Vg1udpOOcUELmanl6QVaAO78XUSrfVeASFyW46R5w==",
+  "dgSpecHash": "JivFS+LkP8sjNKm+10d2cjKLLLw8pEEBOB7uds/qvqb0zlGCX8r4HNRQbXfI7Q8kGto4Z1LZC458+/d3IH7WRQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\JS\\Source\\Repos\\hamid2067\\shopWeb\\Entities\\Entities.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\JS\\.nuget\\packages\\ckeditor\\3.6.4\\ckeditor.3.6.4.nupkg.sha512",
     "C:\\Users\\JS\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
     "C:\\Users\\JS\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\JS\\.nuget\\packages\\humanizer.core.af\\2.14.1\\humanizer.core.af.2.14.1.nupkg.sha512",

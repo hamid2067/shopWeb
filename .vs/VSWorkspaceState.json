@@ -1,12 +1,16 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Entities",
-    "\\Entities\\Product",
     "\\shopWeb",
+    "\\shopWeb\\Areas",
+    "\\shopWeb\\Areas\\Admin",
+    "\\shopWeb\\Areas\\Admin\\Controllers",
+    "\\shopWeb\\Areas\\Admin\\Views",
+    "\\shopWeb\\Areas\\Admin\\Views\\dashbord",
+    "\\shopWeb\\Controllers",
     "\\shopWeb\\Views",
     "\\shopWeb\\Views\\Home"
   ],
-  "SelectedNode": "\\shopWeb\\Views\\Home\\LoginAdmin.cshtml",
+  "SelectedNode": "\\shopWeb\\Areas\\Admin\\Controllers\\dashbordController.cs",
   "PreviewInSolutionExplorer": false
 }

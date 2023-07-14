@@ -17,7 +17,7 @@ using static NuGet.Packaging.PackagingConstants;
 namespace shopWeb.Areas.Admin.Controllers
 {
     [Area("admin")]
-    [Authorize(Roles="admin")]
+    //[Authorize(Roles="admin")]
     public class SlideController : Controller
     {
 

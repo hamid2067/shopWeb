@@ -1,0 +1,45 @@
+﻿@model Entities.Product.ProductCategory
+@using Entities.Product;
+@using Kendo.Mvc.UI
+@using Kendo.Mvc.Extensions
+@{
+    ViewData["Title"] = "CreateGroup";
+    Layout = "~/Areas/Admin/Views/Shared/_adminThemplate.cshtml";
+}
+
+<h1>افزودن دسته بندی</h1>
+
+
+
+<div class="card card-flush">
+    <div class="card-body ">
+        <form class="form" method="post"
+              action="@Url.Action("CreateGroup")"
+              asp-antiforgery="true"
+              encType="multipart/form-data"
+              id="uxFormLarge">
+            <div class="row g-9 mb-7">
+                <div class="col-md-6 fv-row">
+                    <label class="fs-6 fw-bold mb-2" asp-for="categoryName">نام دسته بندی</label>
+                    <input asp-for="categoryName" class="form-control form-control-solid" />
+                    <span asp-validation-for="categoryName" class="text-danger"></span>
+                </div>
+            </div>
+            <p></p>
+            <div class=" flex-center">
+
+                <button type="submit" class="btn btn-primary">
+                    <span class="indicator-label">ثبت</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+    .k-grid {
+        font-size: 12px;
+    }
+</style>
+
+
