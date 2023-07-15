@@ -301,8 +301,9 @@ namespace Data.Migrations
                     b.Property<string>("Hash")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsSpecial")
-                        .HasColumnType("bit");
+                    b.Property<string>("IsSpecial")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ModifiedByUserId")
                         .HasColumnType("nvarchar(max)");

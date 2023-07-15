@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\JS\\Source\\Repos\\hamid2067\\shopWeb\\Data\\Data.csproj": {}
+    "C:\\Users\\JS\\source\\repos\\hamid2067\\shopWeb\\Data\\Data.csproj": {}
   },
   "projects": {
-    "C:\\Users\\JS\\Source\\Repos\\hamid2067\\shopWeb\\Common\\Common.csproj": {
+    "C:\\Users\\JS\\source\\repos\\hamid2067\\shopWeb\\Common\\Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\JS\\Source\\Repos\\hamid2067\\shopWeb\\Common\\Common.csproj",
+        "projectUniqueName": "C:\\Users\\JS\\source\\repos\\hamid2067\\shopWeb\\Common\\Common.csproj",
         "projectName": "Common",
-        "projectPath": "C:\\Users\\JS\\Source\\Repos\\hamid2067\\shopWeb\\Common\\Common.csproj",
+        "projectPath": "C:\\Users\\JS\\source\\repos\\hamid2067\\shopWeb\\Common\\Common.csproj",
         "packagesPath": "C:\\Users\\JS\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\JS\\Source\\Repos\\hamid2067\\shopWeb\\Common\\obj\\",
+        "outputPath": "C:\\Users\\JS\\source\\repos\\hamid2067\\shopWeb\\Common\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -26,7 +26,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -102,14 +101,14 @@
         }
       }
     },
-    "C:\\Users\\JS\\Source\\Repos\\hamid2067\\shopWeb\\Data\\Data.csproj": {
+    "C:\\Users\\JS\\source\\repos\\hamid2067\\shopWeb\\Data\\Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\JS\\Source\\Repos\\hamid2067\\shopWeb\\Data\\Data.csproj",
+        "projectUniqueName": "C:\\Users\\JS\\source\\repos\\hamid2067\\shopWeb\\Data\\Data.csproj",
         "projectName": "Data",
-        "projectPath": "C:\\Users\\JS\\Source\\Repos\\hamid2067\\shopWeb\\Data\\Data.csproj",
+        "projectPath": "C:\\Users\\JS\\source\\repos\\hamid2067\\shopWeb\\Data\\Data.csproj",
         "packagesPath": "C:\\Users\\JS\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\JS\\Source\\Repos\\hamid2067\\shopWeb\\Data\\obj\\",
+        "outputPath": "C:\\Users\\JS\\source\\repos\\hamid2067\\shopWeb\\Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -124,18 +123,17 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\JS\\Source\\Repos\\hamid2067\\shopWeb\\Common\\Common.csproj": {
-                "projectPath": "C:\\Users\\JS\\Source\\Repos\\hamid2067\\shopWeb\\Common\\Common.csproj"
+              "C:\\Users\\JS\\source\\repos\\hamid2067\\shopWeb\\Common\\Common.csproj": {
+                "projectPath": "C:\\Users\\JS\\source\\repos\\hamid2067\\shopWeb\\Common\\Common.csproj"
               },
-              "C:\\Users\\JS\\Source\\Repos\\hamid2067\\shopWeb\\Entities\\Entities.csproj": {
-                "projectPath": "C:\\Users\\JS\\Source\\Repos\\hamid2067\\shopWeb\\Entities\\Entities.csproj"
+              "C:\\Users\\JS\\source\\repos\\hamid2067\\shopWeb\\Entities\\Entities.csproj": {
+                "projectPath": "C:\\Users\\JS\\source\\repos\\hamid2067\\shopWeb\\Entities\\Entities.csproj"
               }
             }
           }
@@ -211,14 +209,14 @@
         }
       }
     },
-    "C:\\Users\\JS\\Source\\Repos\\hamid2067\\shopWeb\\Entities\\Entities.csproj": {
+    "C:\\Users\\JS\\source\\repos\\hamid2067\\shopWeb\\Entities\\Entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\JS\\Source\\Repos\\hamid2067\\shopWeb\\Entities\\Entities.csproj",
+        "projectUniqueName": "C:\\Users\\JS\\source\\repos\\hamid2067\\shopWeb\\Entities\\Entities.csproj",
         "projectName": "Entities",
-        "projectPath": "C:\\Users\\JS\\Source\\Repos\\hamid2067\\shopWeb\\Entities\\Entities.csproj",
+        "projectPath": "C:\\Users\\JS\\source\\repos\\hamid2067\\shopWeb\\Entities\\Entities.csproj",
         "packagesPath": "C:\\Users\\JS\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\JS\\Source\\Repos\\hamid2067\\shopWeb\\Entities\\obj\\",
+        "outputPath": "C:\\Users\\JS\\source\\repos\\hamid2067\\shopWeb\\Entities\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -233,7 +231,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

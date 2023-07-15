@@ -56,13 +56,7 @@ namespace shopWeb.Areas.Admin.Controllers
 
         // GET: dashbordController
         
-        public ActionResult Index()
-        {
-          var test=_product.Table.ToList();
-
-          
-            return View();
-        }
+       
 
         // GET: dashbordController/Details/5
         public ActionResult Details(int id)
@@ -111,15 +105,22 @@ namespace shopWeb.Areas.Admin.Controllers
             {
                 _product.Add(product);
                 await _product.SaveChangesAsync();
-                var resultTable = _product.Table.ToList();
+                
                 return RedirectToAction(nameof(Index));
             }
 
             return View(product);
         }
 
-        
-     
+        public ActionResult ProductList()
+        {
+            var resultTable = _product.Table.ToList();
+
+
+            return View(resultTable);
+        }
+
+
         // GET: dashbordController/Edit/5
         public ActionResult Edit(int id)
         {

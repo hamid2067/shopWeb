@@ -26,7 +26,7 @@ namespace Entities.Product
 
        
         [Display(Name = "محصول ویژه")]
-        public bool IsSpecial { get; set; }
+        public string IsSpecial { get; set; }
 
 
         [Required]

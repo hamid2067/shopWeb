@@ -11,6 +11,6 @@
     "\\shopWeb\\Views",
     "\\shopWeb\\Views\\Home"
   ],
-  "SelectedNode": "\\shopWeb\\Areas\\Admin\\Controllers\\dashbordController.cs",
+  "SelectedNode": "\\shopWeb\\Controllers\\HomeController.cs",
   "PreviewInSolutionExplorer": false
 }
