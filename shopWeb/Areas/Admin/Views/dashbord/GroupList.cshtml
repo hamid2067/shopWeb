@@ -1,0 +1,59 @@
+﻿@model Entities.Product.ProductCategory
+@using Entities.Product;
+
+
+@{
+    ViewData["Title"] = "GroupList";
+    Layout = "~/Areas/Admin/Views/Shared/_adminThemplate.cshtml";
+}
+
+<h1>لیست دسته بندی ها</h1>
+
+
+<div class="card card-flush">
+    <div class="card-body ">
+        <form  class="form" method="post"
+              action="@Url.Action("GroupList")"
+              asp-antiforgery="true">
+            <button type="button" class="btn btn-primary btn-sm" onclick="window.location.href='CreateGroup'">
+                    <span class="indicator-label">افزودن دسته بندی محصول</span>
+                </button>
+                <p></p>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th> نام دسته بندی </th>
+                        <th> ویرایش</th>
+                        <th> حذف</th>
+                        
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                   @* @foreach (var p2 in )
+                    {
+                        <tr>
+
+                    <td>@p2.categoryName</td>
+                            
+                            <td>
+                    <button type="button" class="btn btn-danger btn-sm" onclick="window.location.href='delete'">
+                    <span class="indicator-label">حذف</span>
+                    </button>
+                            </td>
+                            <td>
+                    <button type="button"  class="btn btn-light btn-sm" onclick="window.location.href='edit'">
+                    <span class="indicator-label">ویرایش</span>
+                    </button>
+                            </td>
+                        </tr>
+                    }*@
+                </tbody>
+            </table>
+</form>
+    </div>
+</div>
+
+
+
+

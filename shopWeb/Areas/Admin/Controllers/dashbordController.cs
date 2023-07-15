@@ -54,14 +54,20 @@ namespace shopWeb.Areas.Admin.Controllers
 
         }
 
-        // GET: dashbordController
-        
-       
-
-        // GET: dashbordController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult ProductList()
         {
-            return View();
+            var resultTable = _product.Table.ToList();
+
+
+            return View(resultTable);
+        }
+
+        public ActionResult GroupList()
+        {
+            var testTable = _group.Table.ToList();
+
+
+            return View(testTable);
         }
 
 
@@ -79,6 +85,7 @@ namespace shopWeb.Areas.Admin.Controllers
             {
                 _group.Add(model);
                 await _group.SaveChangesAsync();
+              
                 return RedirectToAction(nameof(Index));
             }
             return View(model);
@@ -91,8 +98,6 @@ namespace shopWeb.Areas.Admin.Controllers
         // Get: dashbordController/Create
         public ActionResult CreateProduct()
         {
-
-           
 
             return View();
         }
@@ -112,14 +117,7 @@ namespace shopWeb.Areas.Admin.Controllers
             return View(product);
         }
 
-        public ActionResult ProductList()
-        {
-            var resultTable = _product.Table.ToList();
-
-
-            return View(resultTable);
-        }
-
+     
 
         // GET: dashbordController/Edit/5
         public ActionResult Edit(int id)
@@ -127,14 +125,14 @@ namespace shopWeb.Areas.Admin.Controllers
             return View();
         }
 
-        // POST: dashbordController/Edit/5
+        //// POST: dashbordController/Edit/5
         //[HttpPost]
         //[ValidateAntiForgeryToken]
         //public IActionResult Edit(int id, Product model1)
         //{
-           
+
         //    var test = _product.Table.FirstOrDefault(model1 => model1.Id == id);
-        //    if(test == null)
+        //    if (test == null)
         //    {
         //        return NotFound();
         //    }
@@ -147,8 +145,8 @@ namespace shopWeb.Areas.Admin.Controllers
         //    test.sizes = model1.sizes;
         //    test.colors = model1.colors;
 
-        //        return View();
-            
+        //    return View();
+
         //}
 
         // GET: dashbordController/Delete/5
