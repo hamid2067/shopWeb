@@ -1,16 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\shopWeb",
-    "\\shopWeb\\Areas",
-    "\\shopWeb\\Areas\\Admin",
-    "\\shopWeb\\Areas\\Admin\\Controllers",
-    "\\shopWeb\\Areas\\Admin\\Views",
-    "\\shopWeb\\Areas\\Admin\\Views\\dashbord",
-    "\\shopWeb\\Controllers",
-    "\\shopWeb\\Views",
-    "\\shopWeb\\Views\\Home"
+    ""
   ],
-  "SelectedNode": "\\shopWeb\\Controllers\\HomeController.cs",
+  "SelectedNode": "\\shopWeb.sln",
   "PreviewInSolutionExplorer": false
 }

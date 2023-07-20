@@ -1,4 +1,5 @@
 ﻿using Data;
+using Data.Repositories;
 using Entities.Menu;
 using Entities.Slide;
 using Microsoft.AspNetCore.Mvc;

@@ -1,7 +1,6 @@
 ﻿using Common.Utility;
 using Entities;
 using Entities.Common;
-using Entities.Product;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -11,7 +10,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Data
+namespace Data.Repositories
 {
     public class Repository<TEntity> : IRepository<TEntity>
         where TEntity : class, IEntity
@@ -20,8 +19,6 @@ namespace Data
         public DbSet<TEntity> Entities { get; }
         public virtual IQueryable<TEntity> Table => Entities;
         public virtual IQueryable<TEntity> TableNoTracking => Entities.AsNoTracking();
-
-        public object ProductCategory { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public Repository(ApplicationDbContext dbContext)
         {
@@ -194,150 +191,6 @@ namespace Data
             var reference = DbContext.Entry(entity).Reference(referenceProperty);
             if (!reference.IsLoaded)
                 reference.Load();
-        }
-
-        //public async Task Add(Product product)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        public Task SaveChangesAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Add(ProductCategory model)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IRepository<TEntity>.Add(TEntity entity, bool saveNow)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IRepository<TEntity>.Add(Product product)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IRepository<TEntity>.AddAsync(ProductCategory model)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task IRepository<TEntity>.AddAsync(TEntity entity, CancellationToken cancellationToken, bool saveNow)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IRepository<TEntity>.AddRange(IEnumerable<TEntity> entities, bool saveNow)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task IRepository<TEntity>.AddRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken, bool saveNow)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IRepository<TEntity>.Attach(TEntity entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IRepository<TEntity>.Delete(TEntity entity, bool saveNow)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task IRepository<TEntity>.DeleteAsync(TEntity entity, CancellationToken cancellationToken, bool saveNow)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IRepository<TEntity>.DeleteRange(IEnumerable<TEntity> entities, bool saveNow)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task IRepository<TEntity>.DeleteRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken, bool saveNow)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IRepository<TEntity>.Detach(TEntity entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        TEntity IRepository<TEntity>.GetById(params object[] ids)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task<TEntity> IRepository<TEntity>.GetByIdAsync(CancellationToken cancellationToken, params object[] ids)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IRepository<TEntity>.LoadCollection<TProperty>(TEntity entity, Expression<Func<TEntity, IEnumerable<TProperty>>> collectionProperty)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task IRepository<TEntity>.LoadCollectionAsync<TProperty>(TEntity entity, Expression<Func<TEntity, IEnumerable<TProperty>>> collectionProperty, CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IRepository<TEntity>.LoadReference<TProperty>(TEntity entity, Expression<Func<TEntity, TProperty>> referenceProperty)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task IRepository<TEntity>.LoadReferenceAsync<TProperty>(TEntity entity, Expression<Func<TEntity, TProperty>> referenceProperty, CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task IRepository<TEntity>.SaveChangesAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        void IRepository<TEntity>.Update(TEntity entity, bool saveNow)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task IRepository<TEntity>.UpdateAsync(TEntity entity, CancellationToken cancellationToken, bool saveNow)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IRepository<TEntity>.UpdateRange(IEnumerable<TEntity> entities, bool saveNow)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task IRepository<TEntity>.UpdateRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken, bool saveNow)
-        {
-            throw new NotImplementedException();
-        }
-
-      
-
-        
-
-        public void AddAsync(ProductCategory model)
-        {
-            throw new NotImplementedException();
-        }
-
-        dynamic IRepository<TEntity>.ToList()
-        {
-            throw new NotImplementedException();
         }
         #endregion
     }

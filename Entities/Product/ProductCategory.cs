@@ -17,6 +17,6 @@ namespace Entities.Product
         public string categoryName { get; set; }
 
 
-        public virtual ICollection<Product> products { get; set; }
+        public virtual ICollection<Product>? products { get; set; }
     }
 }

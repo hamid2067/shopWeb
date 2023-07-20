@@ -7,34 +7,53 @@
     Layout = "~/Areas/Admin/Views/Shared/_adminThemplate.cshtml";
 }
 
-<h1>افزودن دسته بندی</h1>
 
 
-
-<div class="card card-flush">
-    <div class="card-body ">
-        <form class="form" method="post"
+<!-- Basic Inputs start -->
+<section id="basic-input" style="width:100%">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">افزودن دسته بندی</h4>
+                </div>
+                <div class="card-content">
+                    <div class="card-body">
+                        <div class="row">
+                           <form class="form" method="post"
               action="@Url.Action("CreateGroup")"
               asp-antiforgery="true"
-              encType="multipart/form-data"
+            
               id="uxFormLarge">
-            <div class="row g-9 mb-7">
-                <div class="col-md-6 fv-row">
-                    <label class="fs-6 fw-bold mb-2" asp-for="categoryName">نام دسته بندی</label>
-                    <input asp-for="categoryName" class="form-control form-control-solid" />
-                    <span asp-validation-for="categoryName" class="text-danger"></span>
+                                <input  asp-for="Id" type="hidden"/>
+                            <div class="col-sm-12 col-12 mb-1">
+                                <fieldset class="form-group">
+                                    <label asp-for="categoryName">Input text with help</label>
+                                    <small class="text-muted">eg.<i>موبایل , میز</i></small>
+                                    <input type="text" class="form-control" asp-for="categoryName" style="width:100%;">
+                                </fieldset>
+                            </div>
+
+                                <div class=" flex-center">
+
+                                    <button type="submit" class="btn btn-primary">
+                                        <span class="indicator-label">ثبت</span>
+                                    </button>
+                                </div>
+                          
+                          </form>
+                           
+                           
+                        </div>
+                    </div>
                 </div>
             </div>
-            <p></p>
-            <div class=" flex-center">
 
-                <button type="button" class="btn btn-primary btn-sm" onclick="window.location.href='grouplist'">
-                    <span class="indicator-label">افزودن </span>
-                </button>
-            </div>
-        </form>
     </div>
-</div>
+</section>
+<!-- Basic Inputs end -->
+
+
 
 <style>
     .k-grid {

@@ -1,4 +1,4 @@
-﻿@model Entities.Product.ProductCategory
+﻿@model IEnumerable<Entities.Product.ProductCategory>
 @using Entities.Product;
 
 
@@ -30,24 +30,24 @@
                     </tr>
                 </thead>
                 <tbody>
-                   @* @foreach (var p2 in )
+                    @foreach (var p2 in Model)
                     {
                         <tr>
 
                     <td>@p2.categoryName</td>
                             
                             <td>
-                    <button type="button" class="btn btn-danger btn-sm" onclick="window.location.href='delete'">
+                    <a href="/admin/dashbord/deletegroup?id=@p2.Id"  class="btn btn-danger btn-sm" >
                     <span class="indicator-label">حذف</span>
-                    </button>
+                    </a>
                             </td>
                             <td>
-                    <button type="button"  class="btn btn-light btn-sm" onclick="window.location.href='edit'">
+                    <a href="/admin/dashbord/CreateGroup?id=@p2.Id" class="btn btn-light btn-sm">
                     <span class="indicator-label">ویرایش</span>
-                    </button>
+                    </a>
                             </td>
                         </tr>
-                    }*@
+                    }
                 </tbody>
             </table>
 </form>

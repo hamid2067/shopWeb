@@ -6,22 +6,17 @@ using System.Threading;
 using System.Threading.Tasks;
 using Entities;
 using Entities.Common;
-using Entities.Product;
 using Microsoft.EntityFrameworkCore;
 
-namespace Data
+namespace Data.Repositories
 {
     public interface IRepository<TEntity> where TEntity : class, IEntity
     {
         DbSet<TEntity> Entities { get; }
         IQueryable<TEntity> Table { get; }
         IQueryable<TEntity> TableNoTracking { get; }
-        object ProductCategory { get; set; }
 
         void Add(TEntity entity, bool saveNow = true);
-        void Add(Product product);
-        void Add(ProductCategory model);
-        void AddAsync(ProductCategory model);
         Task AddAsync(TEntity entity, CancellationToken cancellationToken, bool saveNow = true);
         void AddRange(IEnumerable<TEntity> entities, bool saveNow = true);
         Task AddRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken, bool saveNow = true);
@@ -37,8 +32,6 @@ namespace Data
         Task LoadCollectionAsync<TProperty>(TEntity entity, Expression<Func<TEntity, IEnumerable<TProperty>>> collectionProperty, CancellationToken cancellationToken) where TProperty : class;
         void LoadReference<TProperty>(TEntity entity, Expression<Func<TEntity, TProperty>> referenceProperty) where TProperty : class;
         Task LoadReferenceAsync<TProperty>(TEntity entity, Expression<Func<TEntity, TProperty>> referenceProperty, CancellationToken cancellationToken) where TProperty : class;
-        Task SaveChangesAsync();
-        dynamic ToList();
         void Update(TEntity entity, bool saveNow = true);
         Task UpdateAsync(TEntity entity, CancellationToken cancellationToken, bool saveNow = true);
         void UpdateRange(IEnumerable<TEntity> entities, bool saveNow = true);

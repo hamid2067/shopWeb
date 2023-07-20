@@ -1,4 +1,5 @@
 ﻿using Data;
+using Data.Repositories;
 using Entities;
 using Entities.Menu;
 using Entities.Product;
@@ -62,6 +63,57 @@ namespace shopWeb.Areas.Admin.Controllers
             return View(resultTable);
         }
 
+        public ActionResult CreateProduct(int? id)
+        {
+            Product num = new();
+            if (id != null)
+            {
+                var result = _product.Table.Where(p => p.Id == id).FirstOrDefault();
+                if (result != null)
+                {
+                    num = result;
+                }
+            }
+           
+            return View(num);
+        }
+        public ActionResult deleteproduct(int? id)
+        {
+            if (id != null)
+            {
+                var result = _product.Table.Where(p => p.Id == id).FirstOrDefault();
+                if (result != null)
+                {
+                    _product.Delete(result);
+                }
+            }
+            return RedirectToAction("CreateProduct");
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateProduct(Product model)
+        {
+            var result = _product.Table.Where(p => p.Id == model.Id).FirstOrDefault();
+            if (ModelState.IsValid)
+            {
+                if (result != null)
+                {
+                    result.productName = model.productName;
+                    _product.Update(result);
+                }
+                else
+                {
+                    _product.Add(model);
+                }
+
+
+
+                return RedirectToAction("GroupList");
+            }
+            return View(model);
+
+
+        }
         public ActionResult GroupList()
         {
             var testTable = _group.Table.ToList();
@@ -69,29 +121,59 @@ namespace shopWeb.Areas.Admin.Controllers
 
             return View(testTable);
         }
-
-
-        public ActionResult CreateGroup(int  id)
-        {
-            //ViewBag.createproduct = _group.ToList();
-            return View();
+        public ActionResult deletegroup(int? id)
+        { 
+            if (id != null)
+            {
+                var result=_group.Table.Where(p=>p.Id==id).FirstOrDefault();
+                if (result != null)
+                {
+                    _group.Delete(result);
+                }
+            }
+            return RedirectToAction("GroupList");
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateGroup(ProductCategory model)
+        public ActionResult CreateGroup(ProductCategory model)
         {
+            var result = _group.Table.Where(p => p.Id == model.Id).FirstOrDefault();
             if (ModelState.IsValid)
             {
-                _group.Add(model);
-                await _group.SaveChangesAsync();
-              
-                return RedirectToAction(nameof(Index));
+                if (result != null)
+                {
+                    result.categoryName = model.categoryName;
+                    _group.Update(result);
+                }
+                else
+                {
+                    _group.Add(model);
+                }
+
+
+
+                return RedirectToAction("GroupList");
             }
             return View(model);
-            
+
 
         }
+        public ActionResult CreateGroup(int?  id)
+        {
+            ProductCategory cat = new();
+            if (id != null)
+            {
+                var result= _group.Table.Where(p=> p.Id==id).FirstOrDefault();
+                if (result != null)
+                {
+                    cat = result;
+                }
+            }
+           //ViewBag.createproduct = _group.ToList();
+            return View(cat);
+        }
+
+
 
 
 
@@ -104,18 +186,18 @@ namespace shopWeb.Areas.Admin.Controllers
         // POST: dashbordController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateProduct(Product product)
-        {
-            if (ModelState.IsValid)
-            {
-                _product.Add(product);
-                await _product.SaveChangesAsync();
+        //public IActionResult CreateProduct(Product product)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        _product.Add(product);
+               
                 
-                return RedirectToAction(nameof(Index));
-            }
+        //        return RedirectToAction(nameof(Index));
+        //    }
 
-            return View(product);
-        }
+        //    return View(product);
+        //}
 
      
 

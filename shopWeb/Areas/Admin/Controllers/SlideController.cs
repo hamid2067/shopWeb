@@ -1,4 +1,5 @@
 ﻿using Data;
+using Data.Repositories;
 using Entities;
 using Entities.Menu;
 using Entities.Slide;

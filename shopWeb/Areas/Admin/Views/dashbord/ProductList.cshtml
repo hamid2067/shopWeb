@@ -1,4 +1,4 @@
-﻿@model Entities.Product.Product
+﻿@model IEnumerable<Entities.Product.Product>
 @using Entities.Product;
 
 
@@ -12,13 +12,13 @@
 
 <div class="card card-flush">
     <div class="card-body ">
-        <form  class="form" method="post"
+        <form class="form" method="post"
               action="@Url.Action("ProductList")"
               asp-antiforgery="true">
             <button type="button" class="btn btn-primary btn-sm" onclick="window.location.href='createproduct'">
-                    <span class="indicator-label">افزودن محصول</span>
-                </button>
-                <p></p>
+                <span class="indicator-label">افزودن محصول</span>
+            </button>
+            <p></p>
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -31,31 +31,49 @@
                         <th>  رنگ محصول</th>
                         <th> ویرایش</th>
                         <th> حذف</th>
-                        
-                        
+
+
                     </tr>
                 </thead>
                 <tbody>
-                   @* @foreach (var p in )
+                    @foreach (var p3 in Model)
                     {
                         <tr>
+                            <td>@p3.Id</td>
+                            <td>@p3.productName</td>
+                            <td>@p3.productDescription</td>
+                            <td>@p3.productSummery</td>
+                            <td>@p3.IsSpecial</td>
+                            <td>@p3.productCategory</td>
 
-                            <td>@p.Id</td>
-                            <td>@p.productName</td>
-                            <td>@p.productDescription</td>
-                            <td>@p.productSummery</td>
-                            <td>@p.IsSpecial</td>
-                            <td>@p.productCategory</td>
-                            <td>@p.Images</td>
-                            <td>@p.sizes</td>
-                            <td>@p.colors</td>
+                            <td>
+                                <img src="~/upload/p3.urlProduct" />
+                                @p3.Images
+                                </td>
+                            <td>@p3.sizes</td>
+                            <td>@p3.colors</td>
+
+
+                            <td>@p3.productName</td>
+
+                            <td>
+                                <a href="/admin/dashbord/deletegroup?id=@p3.Id" class="btn btn-danger btn-sm">
+                                    <span class="indicator-label">حذف</span>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="/admin/dashbord/CreateGroup?id=@p3.Id" class="btn btn-light btn-sm">
+                                    <span class="indicator-label">ویرایش</span>
+                                </a>
+                            </td>
                         </tr>
-                    }*@
+                    }
                 </tbody>
             </table>
-</form>
+        </form>
     </div>
 </div>
+
 
 
 
