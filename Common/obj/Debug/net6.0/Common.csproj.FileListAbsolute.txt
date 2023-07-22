@@ -40,3 +40,17 @@ C:\Users\mandegar\Source\Repos\shopWeb11\Common\obj\Debug\net6.0\refint\Common.d
 C:\Users\mandegar\Source\Repos\shopWeb11\Common\obj\Debug\net6.0\Common.pdb
 C:\Users\mandegar\Source\Repos\shopWeb11\Common\obj\Debug\net6.0\Common.genruntimeconfig.cache
 C:\Users\mandegar\Source\Repos\shopWeb11\Common\obj\Debug\net6.0\ref\Common.dll
+J:\akbari\shopWeb11\shopWeb11\Common\bin\Debug\net6.0\Common.deps.json
+J:\akbari\shopWeb11\shopWeb11\Common\bin\Debug\net6.0\Common.runtimeconfig.json
+J:\akbari\shopWeb11\shopWeb11\Common\bin\Debug\net6.0\Common.dll
+J:\akbari\shopWeb11\shopWeb11\Common\bin\Debug\net6.0\Common.pdb
+J:\akbari\shopWeb11\shopWeb11\Common\obj\Debug\net6.0\Common.csproj.AssemblyReference.cache
+J:\akbari\shopWeb11\shopWeb11\Common\obj\Debug\net6.0\Common.GeneratedMSBuildEditorConfig.editorconfig
+J:\akbari\shopWeb11\shopWeb11\Common\obj\Debug\net6.0\Common.AssemblyInfoInputs.cache
+J:\akbari\shopWeb11\shopWeb11\Common\obj\Debug\net6.0\Common.AssemblyInfo.cs
+J:\akbari\shopWeb11\shopWeb11\Common\obj\Debug\net6.0\Common.csproj.CoreCompileInputs.cache
+J:\akbari\shopWeb11\shopWeb11\Common\obj\Debug\net6.0\Common.dll
+J:\akbari\shopWeb11\shopWeb11\Common\obj\Debug\net6.0\refint\Common.dll
+J:\akbari\shopWeb11\shopWeb11\Common\obj\Debug\net6.0\Common.pdb
+J:\akbari\shopWeb11\shopWeb11\Common\obj\Debug\net6.0\Common.genruntimeconfig.cache
+J:\akbari\shopWeb11\shopWeb11\Common\obj\Debug\net6.0\ref\Common.dll

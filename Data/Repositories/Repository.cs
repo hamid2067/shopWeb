@@ -1,6 +1,7 @@
 ﻿using Common.Utility;
 using Entities;
 using Entities.Common;
+using Entities.Slide;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -191,6 +192,11 @@ namespace Data.Repositories
             var reference = DbContext.Entry(entity).Reference(referenceProperty);
             if (!reference.IsLoaded)
                 reference.Load();
+        }
+
+        public void Add(Slide model)
+        {
+            throw new NotImplementedException();
         }
         #endregion
     }

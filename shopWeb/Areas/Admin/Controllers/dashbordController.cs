@@ -178,11 +178,11 @@ namespace shopWeb.Areas.Admin.Controllers
 
 
         // Get: dashbordController/Create
-        public ActionResult CreateProduct()
-        {
+        //public ActionResult CreateProduct()
+        //{
 
-            return View();
-        }
+        //    return View();
+        //}
         // POST: dashbordController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
