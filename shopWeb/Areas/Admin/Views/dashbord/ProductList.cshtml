@@ -22,13 +22,13 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
+                        <th>کد  </th>
                         <th> نام محصول </th>
-                        <th>توضیحات محصول  </th>
-                        <th>  خلاصه توضیحات محصول</th>
                         <th>محصول ویژه  </th>
                         <th>  عکس محصول</th>
                         <th>سایز محصول  </th>
                         <th>  رنگ محصول</th>
+                        <th>قیمت</th>
                         <th> ویرایش</th>
                         <th> حذف</th>
 
@@ -41,24 +41,25 @@
                         <tr>
                             <td>@p3.Id</td>
                             <td>@p3.productName</td>
-                            <td>@p3.productDescription</td>
-                            <td>@p3.productSummery</td>
-                            <td>@p3.IsSpecial</td>
-                            <td>@p3.productCategory</td>
-
+                            <td>@(p3.IsSpecial? "بله":"خیر")</td>
                             <td>
-                                <img src="~/upload/p3.urlProduct" />
-                                @p3.Images
-                                </td>
-                            <td>@p3.sizes</td>
-                            <td>@p3.colors</td>
-
-
-                            <td>@p3.productName</td>
-
+                                <a href="/admin/dashbord/picproduct?id=@p3.Id" class="btn btn-info btn-sm">
+                                    <span class="indicator-label">ثبت تصاویر</span>
+                                </a>
+                            </td>
                             <td>
-                                <a href="/admin/dashbord/deletegroup?id=@p3.Id" class="btn btn-danger btn-sm">
-                                    <span class="indicator-label">حذف</span>
+                                <a href="/admin/dashbord/sizeproduct?id=@p3.Id" class="btn btn-warning btn-sm">
+                                    <span class="indicator-label">ثبت سایز</span>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="/admin/dashbord/coorproduct?id=@p3.Id" class="btn btn-success btn-sm">
+                                    <span class="indicator-label">ثبت رنگ</span>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="/admin/dashbord/priceproduct?id=@p3.Id" class="btn btn-primary btn-sm">
+                                    <span class="indicator-label"> قیمت ها</span>
                                 </a>
                             </td>
                             <td>
@@ -66,6 +67,12 @@
                                     <span class="indicator-label">ویرایش</span>
                                 </a>
                             </td>
+                            <td>
+                                <a href="/admin/dashbord/deletegroup?id=@p3.Id" class="btn btn-danger btn-sm">
+                                    <span class="indicator-label">حذف</span>
+                                </a>
+                            </td>
+                          
                         </tr>
                     }
                 </tbody>

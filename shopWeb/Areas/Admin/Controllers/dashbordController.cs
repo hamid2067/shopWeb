@@ -113,7 +113,7 @@ namespace shopWeb.Areas.Admin.Controllers
 
 
 
-                return RedirectToAction("GroupList");
+                return RedirectToAction("ProductList");
             }
             return View(model);
 

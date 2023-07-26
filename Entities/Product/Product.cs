@@ -24,11 +24,11 @@ namespace Entities.Product
 
         [Required]
         [Display(Name = "خلاصه توضیحات محصول")]
-        public string productSummery { get; set; }
+        public string? productSummery { get; set; }
 
        
         [Display(Name = "محصول ویژه")]
-        public string IsSpecial { get; set; }
+        public bool IsSpecial { get; set; }
 
 
         [Required]
@@ -39,16 +39,16 @@ namespace Entities.Product
 
 
         [ForeignKey(nameof(categoryId))]
-        public ProductCategory productCategory { get; set; }
+        public ProductCategory? productCategory { get; set; }
 
 
 
 
-        public virtual ICollection<imageProduct> Images { get; set; }
+        public virtual ICollection<imageProduct>? Images { get; set; }
 
-        public virtual ICollection<ProductSize> sizes { get; set; }
+        public virtual ICollection<ProductSize>? sizes { get; set; }
 
-        public virtual ICollection<ProductColor> colors { get; set; }
+        public virtual ICollection<ProductColor>? colors { get; set; }
 
         
 
