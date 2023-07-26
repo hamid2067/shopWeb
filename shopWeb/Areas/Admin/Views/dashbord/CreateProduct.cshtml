@@ -19,10 +19,12 @@
                     <div class="card-body">
                         <div class="row">
                             <form class="form" method="post"
-                                  action="@Url.Action("productName")"
+                                  action="@Url.Action("CreateProduct")"
                                   asp-antiforgery="true"
                                   id="uxFormLarge">
                                 <input asp-for="Id" type="hidden" />
+
+
                                 <div class="col-sm-12 col-12 mb-1">
                                     <fieldset class="form-group">
                                         <label asp-for="productName">Input text with help</label>
@@ -30,6 +32,24 @@
                                         <input type="text" class="form-control" asp-for="productName" style="width:100%;">
                                     </fieldset>
                                 </div>
+
+
+                                <div class="col-sm-12 col-12 mb-1">
+                                    <fieldset class="form-group">
+                                        <label asp-for="categoryId">select group</label>
+                                        <select id="categoryId" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+
+                                        @foreach (var item in ViewBag.group)
+                                        {
+                                                <option value="@item.Id" >@item.categoryName</option>
+                                        }
+                                        </select>
+
+
+                                    </fieldset>
+                                </div>
+
+
 
                                 <div class=" flex-center">
 

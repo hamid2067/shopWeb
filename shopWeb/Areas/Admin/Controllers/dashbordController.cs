@@ -74,9 +74,13 @@ namespace shopWeb.Areas.Admin.Controllers
                     num = result;
                 }
             }
+            ViewBag.group = _group.Table.ToList();
            
             return View(num);
         }
+
+
+
         public ActionResult deleteproduct(int? id)
         {
             if (id != null)
