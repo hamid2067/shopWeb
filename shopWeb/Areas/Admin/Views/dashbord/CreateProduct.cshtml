@@ -6,7 +6,7 @@
     ViewData["Title"] = "CreateProduct";
     Layout = "~/Areas/Admin/Views/Shared/_adminThemplate.cshtml";
 }
-
+<script src="~/ckeditor/ckeditor.js"></script>
 <!-- Basic Inputs start -->
 <section id="basic-input" style="width:100%">
     <div class="row">
@@ -18,7 +18,7 @@
                 <div class="card-content">
                     <div class="card-body">
                         <div class="row">
-                            <form class="form" method="post"
+                            <form class="form col-12" method="post"
                                   action="@Url.Action("CreateProduct")"
                                   asp-antiforgery="true"
                                   id="uxFormLarge">
@@ -27,27 +27,77 @@
 
                                 <div class="col-sm-12 col-12 mb-1">
                                     <fieldset class="form-group">
-                                        <label asp-for="productName">Input text with help</label>
-                                        <small class="text-muted">eg.<i>موبایل , میز</i></small>
+                                        <label asp-for="productName">نام محصول</label>
+                                        <small class="text-muted">eg.<i>عنوان محصول را وارد کنید</i></small>
                                         <input type="text" class="form-control" asp-for="productName" style="width:100%;">
+                                    </fieldset>
+                                </div>
+
+                                <div class="col-sm-12 col-12 mb-1">
+                                    <fieldset class="form-group">
+                                        <label asp-for="categoryId">دسته بندی محصول</label>
+
+
+                                        <select id="categoryId" class="select2 form-control select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
+
+                                            @foreach (var item in ViewBag.group)
+                                            {
+                                                <option value="@item.Id" data-select2-id="@item.Id">@item.categoryName</option>
+                                            }
+                                        </select>
+
+
+
+
+
                                     </fieldset>
                                 </div>
 
 
                                 <div class="col-sm-12 col-12 mb-1">
                                     <fieldset class="form-group">
-                                        <label asp-for="categoryId">select group</label>
-                                        <select id="categoryId" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                                     
 
-                                        @foreach (var item in ViewBag.group)
-                                        {
-                                                <option value="@item.Id" >@item.categoryName</option>
-                                        }
-                                        </select>
-
-
+                                    <fieldset class="form-group">
+                                            <label asp-for="productSummery">خلاصه توضیحات</label>
+                                        <textarea class="form-control" asp-for="productDescription" rows="3" placeholder="خلاصه توضیحات"></textarea>
                                     </fieldset>
+
                                 </div>
+
+                                <div class="col-sm-12 col-12 mb-1">
+                                    <fieldset class="form-group">
+                                        <label asp-for="productSummery">توضیحات تکمیلی</label>
+                                      
+                                        <input type="text" class="form-control" asp-for="productSummery" style="width:100%;">
+                                    </fieldset>
+
+                                     <script>
+
+                                        CKEDITOR.replace("productSummery");
+                                   </script>
+
+                                </div>
+
+                                <div class="col-sm-12 col-12 mb-1">
+                                    
+                                        <fieldset>
+                                            <div class="vs-checkbox-con vs-checkbox-info">
+                                                <input asp-for="IsSpecial"  type="checkbox" checked="" value="false">
+                                                <span class="vs-checkbox">
+                                                    <span class="vs-checkbox--check">
+                                                        <i class="vs-icon feather icon-check"></i>
+                                                    </span>
+                                                </span>
+                                                <span class="">محصول ویژه است</span>
+                                            </div>
+                                        </fieldset>
+
+                                    
+                                </div>
+
+
+                              
 
 
 

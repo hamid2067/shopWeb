@@ -95,6 +95,7 @@ namespace shopWeb.Areas.Admin.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
+       // [ValidateInput(false)]
         public ActionResult CreateProduct(Product model)
         {
             var result = _product.Table.Where(p => p.Id == model.Id).FirstOrDefault();

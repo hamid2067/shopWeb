@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace Entities.Product
 {
@@ -17,6 +18,7 @@ namespace Entities.Product
 
 
         [Display(Name = "توضیحات محصول")]
+        [AllowHtml]
         public string? productDescription { get; set; }
 
 
@@ -32,6 +34,8 @@ namespace Entities.Product
         [Required]
         [Display(Name = "دسته بندی محصول")]
         public int categoryId { get; set; }
+
+
 
 
         [ForeignKey(nameof(categoryId))]
