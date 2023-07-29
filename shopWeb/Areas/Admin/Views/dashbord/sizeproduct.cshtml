@@ -1,0 +1,101 @@
+﻿@model IEnumerable<Entities.Product.ProductSize>
+@using Entities.Product;
+
+
+@{
+    ViewData["Title"] = "ProductList";
+    Layout = "~/Areas/Admin/Views/Shared/_adminThemplate.cshtml";
+}
+
+<h1>لیست سایز ها</h1>
+
+
+<div class="card card-flush">
+    <div class="card-body ">
+
+        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#inlineForm">
+                <span class="indicator-label">افزودن سایز</span>
+            </button>
+            <p></p>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>کد  </th>
+                        <th> نام سایز </th>
+                        <th> حذف</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var p3 in Model)
+                    {
+                        <tr>
+                            <td>@p3.Id</td>
+                            <td>@p3.SizeName</td>
+                            
+                            <td>
+                            <a href="/admin/dashbord/deletesize?id=@p3.Id" class="btn btn-danger btn-sm">
+                                    <span class="indicator-label">حذف</span>
+                                </a>
+                            </td>
+                          
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        
+    </div>
+</div>
+
+<div class="modal fade text-left" id="inlineForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel33">درج سایز </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="#" id="form1">
+                <div class="modal-body">
+                    <label>نام: </label>
+                    <div class="form-group">
+                        <input type="text" placeholder="نام " id="SizeName" name="SizeName" class="form-control">
+                    </div>
+                    <input type="hidden" id="ProductId" name="ProductId" value="@ViewBag.ProductId" />
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="sendsize" class="btn btn-primary" data-dismiss="modal">ثبت</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    $("#sendsize").click(function () {
+
+        var mydata = $("#form1").serialize();
+        $.ajax({
+            url: "@Url.Action("saveSizeForProduct")",
+            type: "POST",
+            dataType: 'json',
+            data: mydata,
+            success: function (response) {
+                $("#SizeName").val("");
+               window.location.reload();
+            },
+            error: function (response) {
+                alert(response.message);
+               
+            }
+        });
+
+
+    });
+</script>
+
+
+

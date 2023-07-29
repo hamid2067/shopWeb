@@ -19,8 +19,8 @@ namespace Entities.Product
         public int ProductId { get; set; }
 
         [ForeignKey(nameof(ProductId))]
-        public Product Product { get; set; }
+        public Product? Product { get; set; }
 
-        public virtual ICollection<PIP> pipes { get; set; }
+        public virtual ICollection<PIP>? pipes { get; set; }
     }
 }

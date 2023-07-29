@@ -1,0 +1,101 @@
+﻿@model IEnumerable<Entities.Product.ProductColor>
+@using Entities.Product;
+
+
+@{
+    ViewData["Title"] = "ProductList";
+    Layout = "~/Areas/Admin/Views/Shared/_adminThemplate.cshtml";
+}
+
+<h1>لیست رنگ ها</h1>
+
+
+<div class="card card-flush">
+    <div class="card-body ">
+
+        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#inlineForm">
+                <span class="indicator-label">افزودن رنگ</span>
+            </button>
+            <p></p>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>کد  </th>
+                        <th> نام رنگ </th>
+                        <th> حذف</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var p3 in Model)
+                    {
+                        <tr>
+                            <td>@p3.Id</td>
+                            <td>@p3.colorName</td>
+                            
+                            <td>
+                                <a href="/admin/dashbord/deletecolor?id=@p3.Id" class="btn btn-danger btn-sm">
+                                    <span class="indicator-label">حذف</span>
+                                </a>
+                            </td>
+                          
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        
+    </div>
+</div>
+
+<div class="modal fade text-left" id="inlineForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel33">درج رنگ </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="#" id="form1">
+                <div class="modal-body">
+                    <label>نام: </label>
+                    <div class="form-group">
+                        <input type="text" placeholder="نام رنگ" id="colorName" name="colorName" class="form-control">
+                    </div>
+                    <input type="hidden" id="ProductId" name="ProductId" value="@ViewBag.ProductId" />
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="sendcolor" class="btn btn-primary" data-dismiss="modal">ثبت</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    $("#sendcolor").click(function () {
+
+        var mydata = $("#form1").serialize();
+        $.ajax({
+            url: "@Url.Action("saveColorForProduct")",
+            type: "POST",
+            dataType: 'json',
+            data: mydata,
+            success: function (response) {
+                $("#colorName").val("");
+               window.location.reload();
+            },
+            error: function (response) {
+                alert(response.message);
+               
+            }
+        });
+
+
+    });
+</script>
+
+
+

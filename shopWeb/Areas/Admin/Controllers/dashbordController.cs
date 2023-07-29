@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using NuGet.Protocol.Core.Types;
 
@@ -18,8 +19,8 @@ namespace shopWeb.Areas.Admin.Controllers
     public class dashbordController : Controller
     {
 
-
-
+        private readonly IRepository<ProductSize> _size;
+        private readonly IRepository<ProductColor> _color;
         private readonly IRepository<ProductCategory> _group;
         private readonly IRepository<Product> _product;
 
@@ -33,7 +34,7 @@ namespace shopWeb.Areas.Admin.Controllers
         private IWebHostEnvironment WebHostEnvironment { get; set; }
 
         private readonly IRepository<Menu> _mymenu;
-        public dashbordController(IUserRepository userRepository,
+        public dashbordController(IRepository<ProductSize> size, IRepository<ProductColor> color, IUserRepository userRepository,
             IRepository<Post> _repositoryPost, UserManager<User> userManager,
             RoleManager<Role> roleManager, SignInManager<User> signInManager,
             IWebHostEnvironment webHostEnvironment, IRepository<Menu> mymenu,
@@ -50,6 +51,8 @@ namespace shopWeb.Areas.Admin.Controllers
             this._mymenu = mymenu;
             this._group = _group;
             this._product = _product;
+            this._color = color;
+            this._size = size;
 
 
 
@@ -79,6 +82,77 @@ namespace shopWeb.Areas.Admin.Controllers
             return View(num);
         }
 
+
+        public ActionResult colorproduct(int? id)
+        {
+         
+          var result = _color.Table.Where(p => p.ProductId == id).ToList();
+            ViewBag.ProductId = id;
+
+            return View(result);
+        }
+
+
+        public ActionResult sizeproduct(int? id)
+        {
+
+            var result = _size.Table.Where(p => p.ProductId == id).ToList();
+            ViewBag.ProductId = id;
+
+            return View(result);
+        }
+
+
+        [HttpPost]
+        public async Task<ActionResult> saveSizeForProduct(ProductSize row)
+        {
+            if (ModelState.IsValid)
+            {
+                _size.Add(row);
+
+                return Json(new { issave = true, message = "ثبت باموفقیت انجام شد" });
+            }
+
+            return Json(new { issave = false, message = "error occuere" });
+        }
+
+
+        public ActionResult deletesize(int? id)
+        {
+
+            var result = _size.Table.Where(p => p.Id == id).FirstOrDefault();
+
+            _size.Delete(result);
+
+            return RedirectToAction("sizeproduct", new { id = result.ProductId });
+        }
+
+
+
+
+        [HttpPost]
+        public async Task<ActionResult> saveColorForProduct(ProductColor row)
+        {
+            if (ModelState.IsValid)
+            {
+                _color.Add(row);
+               
+                return Json(new { issave = true, message = "ثبت باموفقیت انجام شد" });
+            }
+
+            return Json(new { issave = false, message = "error occuere" });
+        }
+
+
+        public ActionResult deletecolor(int? id)
+        {
+
+            var result = _color.Table.Where(p => p.Id == id).FirstOrDefault();
+
+            _color.Delete(result);
+            
+            return RedirectToAction("colorproduct",new { id= result.ProductId});
+        }
 
 
         public ActionResult deleteproduct(int? id)
