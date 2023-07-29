@@ -1,4 +1,5 @@
 ﻿using Entities.Common;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -16,7 +17,7 @@ namespace Entities.Product
 
 
         [ForeignKey(nameof(productId))]
-        public Product product { get; set; }
+        public Product? product { get; set; }
 
    
 
@@ -29,5 +30,8 @@ namespace Entities.Product
         [Required]
         [Display(Name = "عکس مشخص")]
         public bool IsFirst { get; set; }
+
+        [NotMapped]
+        public IFormFile UploadFiles { get; set; }
     }
 }

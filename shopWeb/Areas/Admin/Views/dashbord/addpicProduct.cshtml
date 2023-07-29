@@ -1,0 +1,50 @@
+﻿@model Entities.Product.imageProduct
+@{
+    ViewData["Title"] = "CreateSlide";
+    Layout = "~/Areas/Admin/Views/Shared/_adminThemplate.cshtml";
+}
+
+<div class="card card-flush">
+    <div class="card-body ">
+        <form class="form" method="post"
+              action="@Url.Action("addpicProduct")"
+              asp-antiforgery="true"
+              encType="multipart/form-data"
+              id="uxFormLarge">
+            <div class="row g-9 mb-7">
+
+
+                <input type="hidden" id="picId" name="UploadFiles" />
+                <div class="col-md-6 fv-row mt-2 mb-2">
+                    <label class="fs-6 fw-bold mb-2" asp-for="urlProduct"></label>
+                    <input type="file" id="UploadFiles" name="UploadFiles" />
+               
+                </div>
+
+                <div class="col-sm-12 col-12 mb-1">
+
+                    <fieldset>
+                        <div class="">
+
+                            <input asp-for="IsFirst" type="checkbox" />
+                            <span class=""> عکس اول است</span>
+                        </div>
+                    </fieldset>
+
+
+                </div>
+
+
+            </div>
+            <input type="hidden" id="productId" name="productId" value="@ViewBag.ProductId" />
+            <div class=" flex-center">
+
+                <button type="submit" class="btn btn-primary">
+                    <span class="indicator-label">ثبت</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+

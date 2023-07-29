@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Entities.Product.imageProduct>
+@using Entities.Product;
+
+
+@{
+    ViewData["Title"] = "ProductList";
+    Layout = "~/Areas/Admin/Views/Shared/_adminThemplate.cshtml";
+}
+
+<h1>لیست تصویر ها</h1>
+
+
+<div class="card card-flush">
+    <div class="card-body ">
+
+        <a href="addpicProduct?id=@ViewBag.ProductId" class="btn btn-primary btn-sm">
+                <span class="indicator-label">افزودن تصویر</span>
+            </a>
+            <p></p>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>کد  </th>
+                        <th> نام عکس </th>
+                    <th>  تصویر نخست است </th>
+                        <th> حذف</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var p3 in Model)
+                    {
+                        <tr>
+                            <td>@p3.Id</td>
+                            <td>@p3.urlProduct</td>
+                            <td>@p3.IsFirst</td>
+                            <td>
+                            <a href="/admin/dashbord/deletepic?id=@p3.Id" class="btn btn-danger btn-sm">
+                                    <span class="indicator-label">حذف</span>
+                                </a>
+                            </td>
+                          
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        
+    </div>
+</div>
+
+
+

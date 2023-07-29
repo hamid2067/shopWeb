@@ -18,7 +18,8 @@ namespace shopWeb.Areas.Admin.Controllers
     //[Authorize(Roles = "HRManager,Finance")]
     public class dashbordController : Controller
     {
-
+        private const int MaxBufferSize = 0x10000;
+        private readonly IRepository<imageProduct> _pic;
         private readonly IRepository<ProductSize> _size;
         private readonly IRepository<ProductColor> _color;
         private readonly IRepository<ProductCategory> _group;
@@ -34,7 +35,7 @@ namespace shopWeb.Areas.Admin.Controllers
         private IWebHostEnvironment WebHostEnvironment { get; set; }
 
         private readonly IRepository<Menu> _mymenu;
-        public dashbordController(IRepository<ProductSize> size, IRepository<ProductColor> color, IUserRepository userRepository,
+        public dashbordController(IRepository<imageProduct> pic, IRepository<ProductSize> size, IRepository<ProductColor> color, IUserRepository userRepository,
             IRepository<Post> _repositoryPost, UserManager<User> userManager,
             RoleManager<Role> roleManager, SignInManager<User> signInManager,
             IWebHostEnvironment webHostEnvironment, IRepository<Menu> mymenu,
@@ -53,6 +54,7 @@ namespace shopWeb.Areas.Admin.Controllers
             this._product = _product;
             this._color = color;
             this._size = size;
+            this._pic=pic;
 
 
 
@@ -92,8 +94,81 @@ namespace shopWeb.Areas.Admin.Controllers
             return View(result);
         }
 
+        public ActionResult picproduct(int? id)
+        {
 
-        public ActionResult sizeproduct(int? id)
+            var result = _pic.Table.Where(p => p.productId == id).ToList();
+            ViewBag.ProductId = id;
+
+            return View(result);
+        }
+
+        public ActionResult addpicProduct(int? id)
+        {
+            ViewBag.ProductId = id;
+            imageProduct img = new();
+            return View(img);
+        }
+
+        private static string GetUniqueFileName(IFormFile formFile)
+        {
+            var fileName = Path.GetFileNameWithoutExtension(formFile.FileName);
+            var extension = Path.GetExtension(formFile.FileName);
+            return $"{fileName}.{DateTime.Now.Ticks.ToString()}{extension}";
+        }
+
+        private static string GetFilePath(string fileName, string uploadsRootFolder)
+        {
+            return Path.Combine(uploadsRootFolder, fileName);
+        }
+
+        public async Task<string> SaveFileAsync(IFormFile formFile, string filePath, bool isOverwrite = true)
+        {
+            string fileName = formFile.FileName;
+            if (isOverwrite)
+            {
+                fileName = GetUniqueFileName(formFile);
+            }
+
+            string path = GetFilePath(fileName, filePath);
+            //if (!isOverwrite)
+            //{
+            //    if (File.Exists(path))
+            //        File.Delete(path);
+            //}
+
+            using (var fileStream = new FileStream(path, FileMode.Create, FileAccess.Write,
+                                        FileShare.None,
+                                        MaxBufferSize,
+                                        useAsync: true))
+            {
+                await formFile.CopyToAsync(fileStream);
+            }
+            return fileName;
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> addpicProduct(imageProduct data)
+        {
+
+           
+            if(data.IsFirst)
+            {
+              var res=  _pic.Table.Where(p => p.productId == data.productId).ToList();
+                foreach (var item in res)
+                {
+                    item.IsFirst = false;
+                }
+            }
+            data.urlProduct = await SaveFileAsync(data.UploadFiles, $"wwwroot\\files", true);
+            _pic.Add(data);
+
+            return RedirectToAction("picproduct",new {id= data.productId });
+        }
+
+            public ActionResult sizeproduct(int? id)
         {
 
             var result = _size.Table.Where(p => p.ProductId == id).ToList();
@@ -127,6 +202,16 @@ namespace shopWeb.Areas.Admin.Controllers
             return RedirectToAction("sizeproduct", new { id = result.ProductId });
         }
 
+
+        public ActionResult deletepic(int? id)
+        {
+
+            var result = _pic.Table.Where(p => p.Id == id).FirstOrDefault();
+
+            _pic.Delete(result);
+
+            return RedirectToAction("picproduct", new { id = result.productId });
+        }
 
 
 
