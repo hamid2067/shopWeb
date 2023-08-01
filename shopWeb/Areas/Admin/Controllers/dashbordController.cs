@@ -19,6 +19,7 @@ namespace shopWeb.Areas.Admin.Controllers
     public class dashbordController : Controller
     {
         private const int MaxBufferSize = 0x10000;
+        private readonly IRepository<PIP> _pip;
         private readonly IRepository<imageProduct> _pic;
         private readonly IRepository<ProductSize> _size;
         private readonly IRepository<ProductColor> _color;
@@ -35,7 +36,7 @@ namespace shopWeb.Areas.Admin.Controllers
         private IWebHostEnvironment WebHostEnvironment { get; set; }
 
         private readonly IRepository<Menu> _mymenu;
-        public dashbordController(IRepository<imageProduct> pic, IRepository<ProductSize> size, IRepository<ProductColor> color, IUserRepository userRepository,
+        public dashbordController(IRepository<PIP> pip, IRepository<imageProduct> pic, IRepository<ProductSize> size, IRepository<ProductColor> color, IUserRepository userRepository,
             IRepository<Post> _repositoryPost, UserManager<User> userManager,
             RoleManager<Role> roleManager, SignInManager<User> signInManager,
             IWebHostEnvironment webHostEnvironment, IRepository<Menu> mymenu,
@@ -55,6 +56,7 @@ namespace shopWeb.Areas.Admin.Controllers
             this._color = color;
             this._size = size;
             this._pic=pic;
+            this._pip=pip;
 
 
 
@@ -93,6 +95,22 @@ namespace shopWeb.Areas.Admin.Controllers
 
             return View(result);
         }
+
+        public ActionResult priceproduct(int? id)
+        {
+
+            var result = _pip.Table.Where(p => p.ProductId == id).ToList();
+            ViewBag.ProductId = id;
+
+            var sizelst = _size.Table.Where(p => p.ProductId == id).ToList();
+            var colorlst = _color.Table.Where(p => p.ProductId == id).ToList();
+
+            ViewBag.sizelst = sizelst;
+            ViewBag.colorlst = colorlst;
+
+            return View(result);
+        }
+
 
         public ActionResult picproduct(int? id)
         {
@@ -192,6 +210,21 @@ namespace shopWeb.Areas.Admin.Controllers
         }
 
 
+        [HttpPost]
+        public async Task<ActionResult> savePriceForProduct(PIP row)
+        {
+            if (ModelState.IsValid)
+            {
+                _pip.Add(row);
+
+                return Json(new { issave = true, message = "ثبت باموفقیت انجام شد" });
+            }
+
+            return Json(new { issave = false, message = "error occuere" });
+        }
+
+
+
         public ActionResult deletesize(int? id)
         {
 
@@ -244,13 +277,25 @@ namespace shopWeb.Areas.Admin.Controllers
         {
             if (id != null)
             {
+               var prdpic= _pic.Table.Where(p => p.productId == id).ToList();
+                _pic.DeleteRange(prdpic);
+
+                var prdpip = _pip.Table.Where(p => p.ProductId == id).ToList();
+                _pip.DeleteRange(prdpip);
+
+                var prdcolor = _color.Table.Where(p => p.ProductId == id).ToList();
+                _color.DeleteRange(prdcolor);
+
+                var prdsize = _size.Table.Where(p => p.ProductId == id).ToList();
+                _size.DeleteRange(prdsize);
+
                 var result = _product.Table.Where(p => p.Id == id).FirstOrDefault();
                 if (result != null)
                 {
                     _product.Delete(result);
                 }
             }
-            return RedirectToAction("CreateProduct");
+            return RedirectToAction("ProductList");
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -263,6 +308,9 @@ namespace shopWeb.Areas.Admin.Controllers
                 if (result != null)
                 {
                     result.productName = model.productName;
+                    result.IsSpecial = model.IsSpecial;
+                    result.productDescription = model.productDescription;
+                    result.productSummery = model.productSummery;
                     _product.Update(result);
                 }
                 else

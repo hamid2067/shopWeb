@@ -1,7 +1,10 @@
 ﻿using Data;
+using Data.Repositories;
 using Entities;
+using Entities.Product;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using shopWeb.Models;
 using System.Diagnostics;
 
@@ -11,12 +14,12 @@ namespace shopWeb.Controllers
     {
 
         private readonly IUserRepository userRepository;
-
+        private readonly IRepository<Product> _product;
         private readonly UserManager<User> userManager;
         private readonly RoleManager<Role> roleManager;
         private readonly SignInManager<User> signInManager;
 
-        public HomeController(IUserRepository userRepository,
+        public HomeController(IRepository<Product> product,IUserRepository userRepository,
             UserManager<User> userManager,
             RoleManager<Role> roleManager, SignInManager<User> signInManager)
         {
@@ -24,6 +27,7 @@ namespace shopWeb.Controllers
             this.userManager = userManager;
             this.roleManager = roleManager;
             this.signInManager = signInManager;
+            this._product = product;
 
 
         }
@@ -102,10 +106,21 @@ namespace shopWeb.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        public IActionResult ProductDetails(int ? id)
+        {
+
+            var prd = _product.Table.Include(p => p.pips).Include(p => p.Images).Where(p => p.Id == id).FirstOrDefault();
+
+            return View(prd);
+        }
+
 
         public IActionResult Index()
         {
-            return View();
+
+          var importantprd= _product.Table.Include(p=>p.pips).Include(p=>p.Images).Where(p=>p.IsSpecial==true).ToList();
+         
+            return View(importantprd);
         }
 
         public IActionResult Index2()

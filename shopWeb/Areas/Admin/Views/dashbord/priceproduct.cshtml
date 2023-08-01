@@ -1,0 +1,150 @@
+﻿@model IEnumerable<Entities.Product.PIP>
+@using Entities.Product;
+
+
+@{
+   
+    Layout = "~/Areas/Admin/Views/Shared/_adminThemplate.cshtml";
+}
+
+<h1>لیست قیمت ها</h1>
+
+
+<div class="card card-flush">
+    <div class="card-body ">
+
+        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#inlineForm">
+                <span class="indicator-label">افزودن قیمت</span>
+            </button>
+            <p></p>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>کد  </th>
+                        <th> موجودی</th>
+                        <th> رنگ</th>
+                        <th> سایز</th>
+                        <th> قیمت</th>
+                        <th> حذف</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var p3 in Model)
+                    {
+                        <tr>
+                            <td>@p3.Id</td>
+                            <td>@p3.invoice</td>
+                        <td>@p3.ProductColor.colorName</td>
+                        <td>@p3.ProductSize.SizeName</td>
+                            <td>@p3.Price</td>
+                            <td>
+                                <a href="/admin/dashbord/deletecolor?id=@p3.Id" class="btn btn-danger btn-sm">
+                                    <span class="indicator-label">حذف</span>
+                                </a>
+                            </td>
+                          
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        
+    </div>
+</div>
+
+<div class="modal fade text-left" id="inlineForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel33">درج قیمت </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="#" id="form1">
+                <div class="modal-body">
+
+                    <fieldset class="form-group">
+                        <label for="colorId"> رنگ محصول</label>
+
+
+                        <select id="colorId" name="colorId" class="select2 form-control select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
+
+                            @foreach (var item in ViewBag.colorlst)
+                            {
+                                <option value="@item.Id" data-select2-id="@item.Id">@item.colorName</option>
+                            }
+                        </select>
+                    </fieldset>
+
+
+                     <fieldset class="form-group">
+                        <label for="sizeId">سایز محصول</label>
+
+
+                        <select id="sizeId" name="sizeId" class="select2 form-control select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
+
+                            @foreach (var item in ViewBag.sizelst)
+                                            {
+                                <option value="@item.Id" data-select2-id="@item.Id">@item.SizeName</option>
+                                            }
+                                        </select>
+
+
+
+
+
+                   </fieldset>
+
+                    <label>قیمت: </label>
+                    <div class="form-group">
+                        <input type="number" placeholder="قیمت" id="Price" name="Price" class="form-control">
+                    </div>
+
+                    <label>موجودی: </label>
+                    <div class="form-group">
+                        <input type="number" placeholder="موجودی" id="invoice" name="invoice" class="form-control">
+                    </div>
+
+
+                    <input type="hidden" id="ProductId" name="ProductId" value="@ViewBag.ProductId" />
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="sendcolor" class="btn btn-primary" data-dismiss="modal">ثبت</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    $("#sendcolor").click(function () {
+
+       
+        var mydata = $("#form1").serialize();
+
+        $.ajax({
+            url: "@Url.Action("savePriceForProduct")",
+            type: "POST",
+            dataType: 'json',
+            data: mydata,
+            success: function (response) {
+
+                $("#Price").val("");
+                $("#invoice").val("");
+               window.location.reload();
+            },
+            error: function (response) {
+                alert(response.message);
+               
+            }
+        });
+
+
+    });
+</script>
+
+
+

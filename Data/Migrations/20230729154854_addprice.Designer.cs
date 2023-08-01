@@ -4,6 +4,7 @@ using Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230729154854_addprice")]
+    partial class addprice
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -279,8 +281,6 @@ namespace Data.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
 
                     b.HasIndex("colorId");
 
@@ -745,12 +745,6 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Entities.Product.PIP", b =>
                 {
-                    b.HasOne("Entities.Product.Product", null)
-                        .WithMany("pips")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.HasOne("Entities.Product.ProductColor", "ProductColor")
                         .WithMany("pipes")
                         .HasForeignKey("colorId")
@@ -857,8 +851,6 @@ namespace Data.Migrations
                     b.Navigation("Images");
 
                     b.Navigation("colors");
-
-                    b.Navigation("pips");
 
                     b.Navigation("sizes");
                 });

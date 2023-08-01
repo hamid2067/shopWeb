@@ -24,16 +24,18 @@ namespace Entities.Product
         public int colorId { get; set; }
 
 
+        [Required]
+        public int Price { get; set; }
 
         [Required]
         public int ProductId { get; set; }
 
 
         [ForeignKey(nameof(sizeId))]
-        public ProductSize ProductSize { get; set; }
+        public ProductSize? ProductSize { get; set; }
 
 
         [ForeignKey(nameof(colorId))]
-        public ProductColor ProductColor { get; set; }
+        public ProductColor? ProductColor { get; set; }
     }
 }
