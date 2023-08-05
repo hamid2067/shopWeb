@@ -51,6 +51,11 @@ namespace Entities.Product
         public virtual ICollection<ProductColor>? colors { get; set; }
         public virtual ICollection<PIP>? pips { get; set; }
 
+        [NotMapped]
+        public int selectSize { get; set; }
+
+        [NotMapped]
+        public int selectColor { get; set; }
 
     }
 }

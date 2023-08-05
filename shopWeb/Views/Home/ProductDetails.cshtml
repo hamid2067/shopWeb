@@ -3,6 +3,12 @@
 @{
   
     Layout = "~/Views/Shared/_main.cshtml";
+
+
+    var min=Model.pips.Min(p=>p.Price);
+    var max=Model.pips.Max(p=>p.Price);
+
+
 }
 
 
@@ -17,41 +23,27 @@
                     <div class="product-details-left">
                         <div class="product-details-images-2 slider-lg-image-2">
 
-                            <div class="easyzoom-style">
-                                <div class="easyzoom easyzoom--overlay">
-                                    <a href="assets/images/product/single-product-01.webp" class="poppu-img">
-                                        <img src="assets/images/product/single-product-01.webp" class="img-fluid" alt="">
-                                    </a>
+                             @foreach(var item in Model.Images)
+                            {
+                                <div class="easyzoom-style">
+                                    <div class="easyzoom easyzoom--overlay">
+                                        <a src="~/files/@item.urlProduct" class="poppu-img">
+                                            <img src="~/files/@item.urlProduct" class="img-fluid" alt="">
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="easyzoom-style">
-                                <div class="easyzoom easyzoom--overlay">
-                                    <a href="assets/images/product/single-product-02.webp" class="poppu-img">
-                                        <img src="assets/images/product/single-product-03.webp" class="img-fluid" alt="">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="easyzoom-style">
-                                <div class="easyzoom easyzoom--overlay">
-                                    <a href="assets/images/product/single-product-03.webp" class="poppu-img">
-                                        <img src="assets/images/product/single-product-03.webp" class="img-fluid" alt="">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="easyzoom-style">
-                                <div class="easyzoom easyzoom--overlay">
-                                    <a href="assets/images/product/single-product-04.webp" class="poppu-img">
-                                        <img src="assets/images/product/single-product-04.webp" class="img-fluid" alt="">
-                                    </a>
-                                </div>
-                            </div>
+                            }
+                        
+                           
 
                         </div>
                         <div class="product-details-thumbs-2 slider-thumbs-2">
-                            <div class="sm-image"><img src="assets/images/product/small/1-100x100.webp" alt="product image thumb"></div>
-                            <div class="sm-image"><img src="assets/images/product/small/2-100x100.webp" alt="product image thumb"></div>
-                            <div class="sm-image"><img src="assets/images/product/small/3-100x100.webp" alt="product image thumb"></div>
-                            <div class="sm-image"><img src="assets/images/product/small/4-100x100.webp" alt="product image thumb"></div>
+                            @foreach(var item in Model.Images)
+                            {
+                                <div class="sm-image"><img src="~/files/@item.urlProduct" alt="product image thumb"></div>
+                            }
+                           
+                     
                         </div>
                     </div>
                     <!--// Product Details Left -->
@@ -60,14 +52,14 @@
                 <div class="col-lg-5 col-md-6 col-sm-12 col-xs-12">
                     <div class="product-details-content ">
 
-                        <h5 class="font-weight--reguler mb-10">عنوان محصول فروشگاه</h5>
+                        <h5 class="font-weight--reguler mb-10">@Model.productName</h5>
 
-                        <h3 class="price">50.000 - 200.000 تومان</h3>
+                        <h3 id="clcPrice" class="price">@min - @max تومان</h3>
 
 
 
                         <div class="quickview-peragraph mt-10">
-                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.</p>
+                            <p>@Model.productSummery</p>
                         </div>
 
 
@@ -75,52 +67,40 @@
                         <div class="product-size-wrapper mt-20">
                             <div class="tab-content d-flex">
                                 <label class="mr-2">اندازه :</label>
-                                <div class="tab-pane fade show active" id="tab_list_l">
-                                    بزرگ
-                                </div>
-                                <div class="tab-pane fade" id="tab_list_m">
-                                    متوسط
-                                </div>
-                                <div class="tab-pane fade" id="tab_list_s">
-                                    کوچک
-                                </div>
+                              
                             </div>
 
-                            <ul class="nav product-size-menu" role="tablist">
+                            <select id="selectSize" onchange="setprice()" class="nav product-size-menu" role="tablist">
+                                
+                                @foreach(var item in Model.sizes)
+                                {
+                                    <option value="@item.Id" class="tab__item nav-item active">
+                                        <a class="nav-link active" data-bs-toggle="tab" href="#tab_list_l" role="tab">@item.SizeName</a>
+                                    </option>
+                                }
+                               
+                            
 
-                                <li class="tab__item nav-item active">
-                                    <a class="nav-link active" data-bs-toggle="tab" href="#tab_list_l" role="tab">L</a>
-                                </li>
-                                <li class="tab__item nav-item">
-                                    <a class="nav-link" data-bs-toggle="tab" href="#tab_list_m" role="tab">M</a>
-                                </li>
-                                <li class="tab__item nav-item">
-                                    <a class="nav-link" data-bs-toggle="tab" href="#tab_list_s" role="tab">S</a>
-                                </li>
-
-                            </ul>
+                            </select>
                         </div>
 
 
                         <div class="product-color-wrapper mt-20">
                             <div class="tab-content d-flex">
                                 <label class="mr-2">رنگ :</label>
-                                <div class="tab-pane fade show active" id="tab_list_black">
-                                    مشکی
-                                </div>
-                                <div class="tab-pane fade" id="tab_list_white">
-                                    سفید
-                                </div>
+                               
                             </div>
 
-                            <ul class="nav product-color-menu" role="tablist">
-                                <li class="tab__item nav-item active">
-                                    <a class="nav-link active" data-bs-toggle="tab" href="#tab_list_black" role="tab"></a>
-                                </li>
-                                <li class="tab__item nav-item">
-                                    <a class="nav-link" data-bs-toggle="tab" href="#tab_list_white" role="tab"></a>
-                                </li>
-                            </ul>
+                            <select id="selectColor" onchange="setprice()" class="nav product-color-menu" role="tablist">
+                                @foreach(var item in Model.colors)
+                                {
+                                    <option value="@item.Id class="tab__item nav-item active">
+                                    <a class="nav-link active" data-bs-toggle="tab" href="#tab_list_black" role="tab">@item.colorName</a>
+                                </option>
+                                }
+                           
+                              
+                            </select>
 
                         </div>
 
@@ -146,16 +126,11 @@
                         </div>
 
                         <div class="product_meta mt-30">
-                            <div class="sku_wrapper item_meta">
-                                <span class="label"> موجودی: </span>
-                                <span class="sku"> 502 </span>
-                            </div>
+                         
                             <div class="posted_in item_meta">
-                                <span class="label">دسته بندی: </span><a href="#">مبلمان</a>, <a href="#">میز</a>
+                                <span class="label">دسته بندی: </span><a href="#">@Model.productCategory.categoryName</a>,
                             </div>
-                            <div class="tagged_as item_meta">
-                                <span class="label">برچسب ها: </span><a href="#">مبلمان</a>
-                            </div>
+                           
                         </div>
 
                         <div class="product_socials section-space--mt_60">
@@ -520,3 +495,33 @@
     </div>
 
 </div>
+
+
+<script>
+
+    function setprice()
+    {
+        var selectSize1 = $("#selectSize").val();
+        var selectColor1 = $("#selectColor").val();
+       
+        var obj={
+            selectColor: 2,
+            selectSize: 1, prdId: @Model.Id
+        }
+     
+        $.ajax({
+            url: "@Url.Action("calcProductPrice")",
+            type: "POST",
+            dataType: 'json',
+            data:obj,
+            success: function (response) {
+                $("#clcPrice").text(response.price+" تومان");
+            },
+            error: function (response) {
+                alert(response.message);
+
+            }
+        });
+
+    }
+</script>                                

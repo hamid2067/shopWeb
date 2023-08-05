@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using shopWeb.Models;
 using System.Diagnostics;
+using System.Drawing;
 
 namespace shopWeb.Controllers
 {
@@ -18,8 +19,9 @@ namespace shopWeb.Controllers
         private readonly UserManager<User> userManager;
         private readonly RoleManager<Role> roleManager;
         private readonly SignInManager<User> signInManager;
+        private readonly IRepository<PIP> _pip;
 
-        public HomeController(IRepository<Product> product,IUserRepository userRepository,
+        public HomeController(IRepository<PIP> pip, IRepository<Product> product,IUserRepository userRepository,
             UserManager<User> userManager,
             RoleManager<Role> roleManager, SignInManager<User> signInManager)
         {
@@ -28,7 +30,7 @@ namespace shopWeb.Controllers
             this.roleManager = roleManager;
             this.signInManager = signInManager;
             this._product = product;
-
+            this._pip = pip;
 
         }
 
@@ -109,9 +111,21 @@ namespace shopWeb.Controllers
         public IActionResult ProductDetails(int ? id)
         {
 
-            var prd = _product.Table.Include(p => p.pips).Include(p => p.Images).Where(p => p.Id == id).FirstOrDefault();
+     var prd = _product.Table.Include(p => p.pips).Include(p=>p.productCategory).Include(p=>p.colors).Include(p=>p.sizes).Include(p => p.Images).Where(p => p.Id == id).FirstOrDefault();
 
             return View(prd);
+        }
+
+
+        [HttpPost]
+        public async Task<ActionResult> calcProductPrice(pricePrd prd)
+        {
+
+            var product = _pip.Table.Where(p => p.ProductId == prd.prdId &&
+            p.colorId == prd.selectColor && p.sizeId == prd.selecrSize).FirstOrDefault();
+
+            return Json(new { isExist = product!= null ?true:false,
+                invoice= product?.invoice ,price= product?.Price });
         }
 
 
