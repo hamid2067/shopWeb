@@ -115,7 +115,7 @@
 
                                 <div class="quickview-button">
                                     <div class="quickview-cart button">
-                                        <a href="product-details.html" class="btn--lg btn--black font-weight--reguler text-white">افزودن به سبد خرید</a>
+                                        <a id="btnsend" href="product-details.html" class="btn--lg btn--black font-weight--reguler text-white">افزودن به سبد خرید</a>
                                     </div>
                                     <div class="quickview-wishlist button">
                                         <a title="Add to wishlist" href="#"><i class="icon-heart"></i></a>
@@ -277,7 +277,7 @@
                                             </div>
 
                                             <div class="comment-form-submit">
-                                                <input type="submit" value="ارسال" class="comment-submit">
+                                                <input  type="submit" value="ارسال" class="comment-submit">
                                             </div>
                                         </form>
                                     </div>
@@ -527,7 +527,12 @@
             dataType: 'json',
             data:obj,
             success: function (response) {
+
                 $("#clcPrice").text(response.price+" تومان");
+                if(response.invoice<=0)
+                {
+                    $("#btnsend").attr("href","");
+                }
             },
             error: function (response) {
                 alert(response.message);
