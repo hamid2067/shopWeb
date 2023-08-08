@@ -94,7 +94,7 @@
                             <select id="selectColor" onchange="setprice()" class="nav product-color-menu" role="tablist">
                                 @foreach(var item in Model.colors)
                                 {
-                                    <option value="@item.Id class="tab__item nav-item active">
+                                    <option value="@item.Id" class="tab__item nav-item active">
                                     <a class="nav-link active" data-bs-toggle="tab" href="#tab_list_black" role="tab">@item.colorName</a>
                                 </option>
                                 }
@@ -496,18 +496,30 @@
 
 </div>
 
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
 
 <script>
+
+    $(document).ready(function () {
+
+       
+        $("#selectSize").val($("#selectSize option:first").val());
+        $("#selectColor").val();
+
+     
+
+     
+
+        setprice();
+
+    });
 
     function setprice()
     {
         var selectSize1 = $("#selectSize").val();
         var selectColor1 = $("#selectColor").val();
        
-        var obj={
-            selectColor: 2,
-            selectSize: 1, prdId: @Model.Id
-        }
+        var obj = { "selectColor": selectColor1, "selectSize": selectSize1, "prdId": @Model.Id };
      
         $.ajax({
             url: "@Url.Action("calcProductPrice")",

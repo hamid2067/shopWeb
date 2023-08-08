@@ -122,7 +122,7 @@ namespace shopWeb.Controllers
         {
 
             var product = _pip.Table.Where(p => p.ProductId == prd.prdId &&
-            p.colorId == prd.selectColor && p.sizeId == prd.selecrSize).FirstOrDefault();
+            p.colorId == prd.selectColor && p.sizeId == prd.selectSize).FirstOrDefault();
 
             return Json(new { isExist = product!= null ?true:false,
                 invoice= product?.invoice ,price= product?.Price });
