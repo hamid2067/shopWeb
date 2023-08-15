@@ -32,6 +32,7 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration" Version="6.0.14" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Core" Version="6.0.14" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.14" />
+    <PackageReference Include="RestSharp" Version="110.2.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.0" />
   </ItemGroup>
 
@@ -835,7 +836,7 @@
 
   <ItemGroup>
     <Reference Include="Kendo.Mvc">
-      <HintPath>..\..\..\..\bbb\aria\Kendo.Mvc.dll</HintPath>
+      <HintPath>F:\core-sherkat\ExternalPackage\Kendo\Kendo.Mvc.dll</HintPath>
     </Reference>
   </ItemGroup>
 
