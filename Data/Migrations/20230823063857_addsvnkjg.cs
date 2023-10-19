@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Data.Migrations
 {
-    public partial class test : Migration
+    public partial class addsvnkjg : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -100,6 +100,7 @@ namespace Data.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     categoryName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    weblogId = table.Column<int>(type: "int", nullable: false),
                     CreatedByUserId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ModifiedByUserId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDateTime = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -131,6 +132,25 @@ namespace Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Slide", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "weblog",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    websummery = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    webdescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedByUserId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ModifiedByUserId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedDateTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ModifiedDateTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Hash = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_weblog", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -269,6 +289,38 @@ namespace Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Order",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PostCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Mobile = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    OffCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SumPrice = table.Column<int>(type: "int", nullable: false),
+                    Off = table.Column<int>(type: "int", nullable: false),
+                    PayPrice = table.Column<int>(type: "int", nullable: false),
+                    OrderState = table.Column<int>(type: "int", nullable: false),
+                    userId = table.Column<int>(type: "int", nullable: false),
+                    CreatedByUserId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ModifiedByUserId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedDateTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ModifiedDateTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Hash = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Order", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Order_AspNetUsers_userId",
+                        column: x => x.userId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Post",
                 columns: table => new
                 {
@@ -302,7 +354,7 @@ namespace Data.Migrations
                     productName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     productDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     productSummery = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IsSpecial = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsSpecial = table.Column<bool>(type: "bit", nullable: false),
                     categoryId = table.Column<int>(type: "int", nullable: false),
                     CreatedByUserId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ModifiedByUserId = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -398,6 +450,95 @@ namespace Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Basket",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    productId = table.Column<int>(type: "int", nullable: false),
+                    Number = table.Column<float>(type: "real", nullable: false),
+                    Price = table.Column<int>(type: "int", nullable: false),
+                    sizeId = table.Column<int>(type: "int", nullable: false),
+                    colorId = table.Column<int>(type: "int", nullable: false),
+                    userId = table.Column<int>(type: "int", nullable: false),
+                    CreatedByUserId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ModifiedByUserId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedDateTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ModifiedDateTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Hash = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Basket", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Basket_AspNetUsers_userId",
+                        column: x => x.userId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Basket_ProductColor_colorId",
+                        column: x => x.colorId,
+                        principalTable: "ProductColor",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Basket_ProductSize_sizeId",
+                        column: x => x.sizeId,
+                        principalTable: "ProductSize",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "OrderItem",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    OrderId = table.Column<int>(type: "int", nullable: false),
+                    productId = table.Column<int>(type: "int", nullable: false),
+                    Number = table.Column<float>(type: "real", nullable: false),
+                    Price = table.Column<int>(type: "int", nullable: false),
+                    sizeId = table.Column<int>(type: "int", nullable: false),
+                    colorId = table.Column<int>(type: "int", nullable: false),
+                    userId = table.Column<int>(type: "int", nullable: false),
+                    CreatedByUserId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ModifiedByUserId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedDateTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ModifiedDateTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Hash = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OrderItem", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_OrderItem_AspNetUsers_userId",
+                        column: x => x.userId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_OrderItem_Order_OrderId",
+                        column: x => x.OrderId,
+                        principalTable: "Order",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_OrderItem_ProductColor_colorId",
+                        column: x => x.colorId,
+                        principalTable: "ProductColor",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_OrderItem_ProductSize_sizeId",
+                        column: x => x.sizeId,
+                        principalTable: "ProductSize",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "PIP",
                 columns: table => new
                 {
@@ -406,6 +547,7 @@ namespace Data.Migrations
                     invoice = table.Column<double>(type: "float", nullable: false),
                     sizeId = table.Column<int>(type: "int", nullable: false),
                     colorId = table.Column<int>(type: "int", nullable: false),
+                    Price = table.Column<int>(type: "int", nullable: false),
                     ProductId = table.Column<int>(type: "int", nullable: false),
                     CreatedByUserId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ModifiedByUserId = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -416,6 +558,12 @@ namespace Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_PIP", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_PIP_Product_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Product",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_PIP_ProductColor_colorId",
                         column: x => x.colorId,
@@ -437,8 +585,8 @@ namespace Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "ProductCategory",
-                columns: new[] { "Id", "CreatedByUserId", "CreatedDateTime", "Hash", "ModifiedByUserId", "ModifiedDateTime", "categoryName" },
-                values: new object[] { 2, null, null, null, null, null, "abcd" });
+                columns: new[] { "Id", "CreatedByUserId", "CreatedDateTime", "Hash", "ModifiedByUserId", "ModifiedDateTime", "categoryName", "weblogId" },
+                values: new object[] { 2, null, null, null, null, null, "abcd", 0 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Address_UserId",
@@ -485,14 +633,59 @@ namespace Data.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Basket_colorId",
+                table: "Basket",
+                column: "colorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Basket_sizeId",
+                table: "Basket",
+                column: "sizeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Basket_userId",
+                table: "Basket",
+                column: "userId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_imageProduct_productId",
                 table: "imageProduct",
                 column: "productId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Order_userId",
+                table: "Order",
+                column: "userId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OrderItem_colorId",
+                table: "OrderItem",
+                column: "colorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OrderItem_OrderId",
+                table: "OrderItem",
+                column: "OrderId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OrderItem_sizeId",
+                table: "OrderItem",
+                column: "sizeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OrderItem_userId",
+                table: "OrderItem",
+                column: "userId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_PIP_colorId",
                 table: "PIP",
                 column: "colorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PIP_ProductId",
+                table: "PIP",
+                column: "ProductId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PIP_sizeId",
@@ -541,10 +734,16 @@ namespace Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Basket");
+
+            migrationBuilder.DropTable(
                 name: "imageProduct");
 
             migrationBuilder.DropTable(
                 name: "Menu");
+
+            migrationBuilder.DropTable(
+                name: "OrderItem");
 
             migrationBuilder.DropTable(
                 name: "PIP");
@@ -556,10 +755,13 @@ namespace Data.Migrations
                 name: "Slide");
 
             migrationBuilder.DropTable(
+                name: "weblog");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
+                name: "Order");
 
             migrationBuilder.DropTable(
                 name: "ProductColor");
@@ -569,6 +771,9 @@ namespace Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Category");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUsers");
 
             migrationBuilder.DropTable(
                 name: "Product");

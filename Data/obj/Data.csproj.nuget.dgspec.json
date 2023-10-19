@@ -1,24 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "J:\\akbari\\shopWeb11\\shopWeb11\\Data\\Data.csproj": {}
+    "D:\\ShopWebNew\\Data\\Data.csproj": {}
   },
   "projects": {
-    "J:\\akbari\\shopWeb11\\shopWeb11\\Common\\Common.csproj": {
+    "D:\\ShopWebNew\\Common\\Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "J:\\akbari\\shopWeb11\\shopWeb11\\Common\\Common.csproj",
+        "projectUniqueName": "D:\\ShopWebNew\\Common\\Common.csproj",
         "projectName": "Common",
-        "projectPath": "J:\\akbari\\shopWeb11\\shopWeb11\\Common\\Common.csproj",
-        "packagesPath": "C:\\Users\\jco\\.nuget\\packages\\",
-        "outputPath": "J:\\akbari\\shopWeb11\\shopWeb11\\Common\\obj\\",
+        "projectPath": "D:\\ShopWebNew\\Common\\Common.csproj",
+        "packagesPath": "C:\\Users\\JS\\.nuget\\packages\\",
+        "outputPath": "D:\\ShopWebNew\\Common\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\jco\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\JS\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -102,21 +101,20 @@
         }
       }
     },
-    "J:\\akbari\\shopWeb11\\shopWeb11\\Data\\Data.csproj": {
+    "D:\\ShopWebNew\\Data\\Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "J:\\akbari\\shopWeb11\\shopWeb11\\Data\\Data.csproj",
+        "projectUniqueName": "D:\\ShopWebNew\\Data\\Data.csproj",
         "projectName": "Data",
-        "projectPath": "J:\\akbari\\shopWeb11\\shopWeb11\\Data\\Data.csproj",
-        "packagesPath": "C:\\Users\\jco\\.nuget\\packages\\",
-        "outputPath": "J:\\akbari\\shopWeb11\\shopWeb11\\Data\\obj\\",
+        "projectPath": "D:\\ShopWebNew\\Data\\Data.csproj",
+        "packagesPath": "C:\\Users\\JS\\.nuget\\packages\\",
+        "outputPath": "D:\\ShopWebNew\\Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\jco\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\JS\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -131,11 +129,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "J:\\akbari\\shopWeb11\\shopWeb11\\Common\\Common.csproj": {
-                "projectPath": "J:\\akbari\\shopWeb11\\shopWeb11\\Common\\Common.csproj"
+              "D:\\ShopWebNew\\Common\\Common.csproj": {
+                "projectPath": "D:\\ShopWebNew\\Common\\Common.csproj"
               },
-              "J:\\akbari\\shopWeb11\\shopWeb11\\Entities\\Entities.csproj": {
-                "projectPath": "J:\\akbari\\shopWeb11\\shopWeb11\\Entities\\Entities.csproj"
+              "D:\\ShopWebNew\\Entities\\Entities.csproj": {
+                "projectPath": "D:\\ShopWebNew\\Entities\\Entities.csproj"
               }
             }
           }
@@ -211,21 +209,20 @@
         }
       }
     },
-    "J:\\akbari\\shopWeb11\\shopWeb11\\Entities\\Entities.csproj": {
+    "D:\\ShopWebNew\\Entities\\Entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "J:\\akbari\\shopWeb11\\shopWeb11\\Entities\\Entities.csproj",
+        "projectUniqueName": "D:\\ShopWebNew\\Entities\\Entities.csproj",
         "projectName": "Entities",
-        "projectPath": "J:\\akbari\\shopWeb11\\shopWeb11\\Entities\\Entities.csproj",
-        "packagesPath": "C:\\Users\\jco\\.nuget\\packages\\",
-        "outputPath": "J:\\akbari\\shopWeb11\\shopWeb11\\Entities\\obj\\",
+        "projectPath": "D:\\ShopWebNew\\Entities\\Entities.csproj",
+        "packagesPath": "C:\\Users\\JS\\.nuget\\packages\\",
+        "outputPath": "D:\\ShopWebNew\\Entities\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\jco\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\JS\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],

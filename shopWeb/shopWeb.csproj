@@ -18,6 +18,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="Areas\Admin\Views\dashbord\CreateProduct - Copy.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="CKEditor" Version="3.6.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.14">
       <PrivateAssets>all</PrivateAssets>
@@ -836,7 +840,7 @@
 
   <ItemGroup>
     <Reference Include="Kendo.Mvc">
-      <HintPath>F:\core-sherkat\ExternalPackage\Kendo\Kendo.Mvc.dll</HintPath>
+      <HintPath>C:\Users\JS\Desktop\New folder\kendo\Kendodll\Kendo.Mvc.dll</HintPath>
     </Reference>
   </ItemGroup>
 

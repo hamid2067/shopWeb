@@ -1,4 +1,5 @@
 ﻿using Entities.Common;
+using Entities.weblog;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -18,5 +19,9 @@ namespace Entities.Product
 
 
         public virtual ICollection<Product>? products { get; set; }
+
+        public virtual ICollection<Weblog>? weblog { get; set; }
+        
+
     }
 }

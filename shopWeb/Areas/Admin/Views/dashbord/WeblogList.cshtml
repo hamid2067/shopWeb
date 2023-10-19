@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Entities.weblog.Weblog>
+
+
+
+@{
+    ViewData["Title"] = "WeblogList";
+    Layout = "~/Areas/Admin/Views/Shared/_adminThemplate.cshtml";
+}
+
+<h1>لیست وبلاگ ها</h1>
+
+
+<div class="card card-flush">
+    <div class="card-body ">
+        <form class="form" method="post"
+              action="@Url.Action("WeblogList")"
+              asp-antiforgery="true">
+            <button type="button" class="btn btn-primary btn-sm" onclick="window.location.href='createweblog'">
+                <span class="indicator-label">افزودن وبلاگ</span>
+            </button>
+            <p></p>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>کد  </th>
+                        <th> خلاصه وبلاگ </th>
+                        <th>توضیحات تکمیلی وبلاگ  </th>
+                        
+                        <th> ویرایش</th>
+                        <th> حذف</th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var p3 in Model)
+                    {
+                        <tr>
+                            <td>@p3.Id</td>
+                            <td>@p3.websummery</td>
+                            <td>@p3.webdescription</td>
+                           
+                           
+                            <td>
+                                <a href="/admin/dashbord/createweblog?id=@p3.Id" class="btn btn-light btn-sm">
+                                    <span class="indicator-label">ویرایش</span>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="/admin/dashbord/deleteweblog?id=@p3.Id" class="btn btn-danger btn-sm">
+                                    <span class="indicator-label">حذف</span>
+                                </a>
+                            </td>
+                          
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </form>
+    </div>
+</div>
+
+
+
+
+

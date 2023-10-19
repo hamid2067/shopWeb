@@ -5,11 +5,11 @@ VisualStudioVersion = 17.1.32407.343
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "shopWeb", "shopWeb.csproj", "{45BF6E21-CF7D-46D1-B30B-847C40D8B094}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "..\Common\Common.csproj", "{3060CDFB-DF97-424C-BFE9-60698E846301}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "..\Common\Common.csproj", "{3060CDFB-DF97-424C-BFE9-60698E846301}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "..\Entities\Entities.csproj", "{310ECDEA-747A-42BF-8859-BD9B713BF851}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "..\Entities\Entities.csproj", "{310ECDEA-747A-42BF-8859-BD9B713BF851}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "..\Data\Data.csproj", "{81098EFD-3204-4292-B883-D96E3FBB7143}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "..\Data\Data.csproj", "{81098EFD-3204-4292-B883-D96E3FBB7143}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

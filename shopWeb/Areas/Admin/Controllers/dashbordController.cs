@@ -3,6 +3,7 @@ using Data.Repositories;
 using Entities;
 using Entities.Menu;
 using Entities.Product;
+using Entities.weblog;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -14,7 +15,7 @@ using NuGet.Protocol.Core.Types;
 namespace shopWeb.Areas.Admin.Controllers
 {
     [Area("admin")]
-   // [Authorize(Roles ="admin")]
+    [Authorize(Roles ="admin")]
     //[Authorize(Roles = "HRManager,Finance")]
     public class dashbordController : Controller
     {
@@ -25,6 +26,8 @@ namespace shopWeb.Areas.Admin.Controllers
         private readonly IRepository<ProductColor> _color;
         private readonly IRepository<ProductCategory> _group;
         private readonly IRepository<Product> _product;
+        private readonly IRepository<Weblog> _blog;
+        
 
         private readonly IUserRepository userRepository;
 
@@ -36,7 +39,7 @@ namespace shopWeb.Areas.Admin.Controllers
         private IWebHostEnvironment WebHostEnvironment { get; set; }
 
         private readonly IRepository<Menu> _mymenu;
-        public dashbordController(IRepository<PIP> pip, IRepository<imageProduct> pic, IRepository<ProductSize> size, IRepository<ProductColor> color, IUserRepository userRepository,
+        public dashbordController( IRepository<Weblog> _blog, IRepository<PIP> pip, IRepository<imageProduct> pic, IRepository<ProductSize> size, IRepository<ProductColor> color, IUserRepository userRepository,
             IRepository<Post> _repositoryPost, UserManager<User> userManager,
             RoleManager<Role> roleManager, SignInManager<User> signInManager,
             IWebHostEnvironment webHostEnvironment, IRepository<Menu> mymenu,
@@ -57,6 +60,9 @@ namespace shopWeb.Areas.Admin.Controllers
             this._size = size;
             this._pic=pic;
             this._pip=pip;
+            this._blog=_blog;
+            
+
 
 
 
@@ -186,7 +192,8 @@ namespace shopWeb.Areas.Admin.Controllers
             return RedirectToAction("picproduct",new {id= data.productId });
         }
 
-            public ActionResult sizeproduct(int? id)
+
+        public ActionResult sizeproduct(int? id)
         {
 
             var result = _size.Table.Where(p => p.ProductId == id).ToList();
@@ -326,6 +333,8 @@ namespace shopWeb.Areas.Admin.Controllers
 
 
         }
+
+
         public ActionResult GroupList()
         {
             var testTable = _group.Table.ToList();
@@ -333,6 +342,8 @@ namespace shopWeb.Areas.Admin.Controllers
 
             return View(testTable);
         }
+
+
         public ActionResult deletegroup(int? id)
         { 
             if (id != null)
@@ -345,6 +356,8 @@ namespace shopWeb.Areas.Admin.Controllers
             }
             return RedirectToAction("GroupList");
         }
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult CreateGroup(ProductCategory model)
@@ -370,6 +383,8 @@ namespace shopWeb.Areas.Admin.Controllers
 
 
         }
+
+
         public ActionResult CreateGroup(int?  id)
         {
             ProductCategory cat = new();
@@ -386,82 +401,77 @@ namespace shopWeb.Areas.Admin.Controllers
         }
 
 
+        public ActionResult CreateWeblog(int? id)
+        {
+            Weblog blog = new();
+            if (id != null)
+            {
+                var result = _blog.Table.Where(p => p.Id == id).FirstOrDefault();
+                if (result != null)
+                {
+                    blog = result;
+                }
+            }
+            ViewBag.group2 = _group.Table.ToList();
 
+            return View(blog);
+        }
 
-
-        // Get: dashbordController/Create
-        //public ActionResult CreateProduct()
-        //{
-
-        //    return View();
-        //}
-        // POST: dashbordController/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        //public IActionResult CreateProduct(Product product)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        _product.Add(product);
+        
+        public ActionResult CreateWeblog(Weblog model)
+        {
+            var result = _blog.Table.Where(p => p.Id == model.Id).FirstOrDefault();
+            if (ModelState.IsValid)
+            {
+                if (result != null)
+                {
+                    result.websummery = model.websummery;
+                    result.webdescription = model.webdescription;
+                    
+                    _blog.Update(result);
+                }
+                else
+                {
+                    _blog.Add(model);
+                }
+
+
+
+                return RedirectToAction("WeblogList");
+            }
+            return View(model);
+
+
+        }
+
+
+        public ActionResult deleteWeblog(int? id)
+        {
+            if (id != null)
+            {
                
-                
-        //        return RedirectToAction(nameof(Index));
-        //    }
-
-        //    return View(product);
-        //}
-
-     
-
-        // GET: dashbordController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        //// POST: dashbordController/Edit/5
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public IActionResult Edit(int id, Product model1)
-        //{
-
-        //    var test = _product.Table.FirstOrDefault(model1 => model1.Id == id);
-        //    if (test == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    test.productName = model1.productName;
-        //    test.productDescription = model1.productDescription;
-        //    test.productSummery = model1.productSummery;
-        //    test.IsSpecial = model1.IsSpecial;
-        //    test.productCategory = model1.productCategory;
-        //    test.Images = model1.Images;
-        //    test.sizes = model1.sizes;
-        //    test.colors = model1.colors;
-
-        //    return View();
-
-        //}
-
-        // GET: dashbordController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: dashbordController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
+                var result = _blog.Table.Where(p => p.Id == id).FirstOrDefault();
+                if (result != null)
+                {
+                    _blog.Delete(result);
+                }
             }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction("WeblogList");
         }
+
+        public ActionResult WeblogList()
+        {
+            var resultTable = _blog.Table.ToList();
+
+
+            return View(resultTable);
+        }
+
+        
+
+
+
+
     }
 }

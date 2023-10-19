@@ -5,8 +5,8 @@
     Layout = "~/Views/Shared/_main.cshtml";
 
 
-    var min=Model.pips.Min(p=>p.Price);
-    var max=Model.pips.Max(p=>p.Price);
+    //var min=Model.pips.Min(p=>p.Price);
+    //var max=Model.pips.Max(p=>p.Price);
 
 
 }
@@ -54,9 +54,7 @@
 
                         <h5 class="font-weight--reguler mb-10">@Model.productName</h5>
 
-                        <h3 id="clcPrice" class="price">@min - @max تومان</h3>
-
-
+                        <h3 id="clcPrice" class="price"></h3>
 
                         <div class="quickview-peragraph mt-10">
                             <p>@Model.productSummery</p>

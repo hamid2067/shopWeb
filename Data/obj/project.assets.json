@@ -12472,25 +12472,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\jco\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\JS\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "J:\\akbari\\shopWeb11\\shopWeb11\\Data\\Data.csproj",
+      "projectUniqueName": "D:\\ShopWebNew\\Data\\Data.csproj",
       "projectName": "Data",
-      "projectPath": "J:\\akbari\\shopWeb11\\shopWeb11\\Data\\Data.csproj",
-      "packagesPath": "C:\\Users\\jco\\.nuget\\packages\\",
-      "outputPath": "J:\\akbari\\shopWeb11\\shopWeb11\\Data\\obj\\",
+      "projectPath": "D:\\ShopWebNew\\Data\\Data.csproj",
+      "packagesPath": "C:\\Users\\JS\\.nuget\\packages\\",
+      "outputPath": "D:\\ShopWebNew\\Data\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\jco\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\JS\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -12505,11 +12503,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "J:\\akbari\\shopWeb11\\shopWeb11\\Common\\Common.csproj": {
-              "projectPath": "J:\\akbari\\shopWeb11\\shopWeb11\\Common\\Common.csproj"
+            "D:\\ShopWebNew\\Common\\Common.csproj": {
+              "projectPath": "D:\\ShopWebNew\\Common\\Common.csproj"
             },
-            "J:\\akbari\\shopWeb11\\shopWeb11\\Entities\\Entities.csproj": {
-              "projectPath": "J:\\akbari\\shopWeb11\\shopWeb11\\Entities\\Entities.csproj"
+            "D:\\ShopWebNew\\Entities\\Entities.csproj": {
+              "projectPath": "D:\\ShopWebNew\\Entities\\Entities.csproj"
             }
           }
         }
